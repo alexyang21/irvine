@@ -1,0 +1,24 @@
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<div class="center">
+  <h1><%= @restaurant.name %></h1>
+</div>
+
+<div class="row">
+  <% @menus.each do |menu| %>
+
+    <div class="col-md-6 well">
+      <div class="menu_listing_name">
+        <h4>
+          <%= menu.name %> - <%= number_to_currency(menu.price) %>
+        </h4>
+      </div>
+      <div class="menu_listing_description">
+        <%= menu.description %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

@@ -1,11 +1,12 @@
 Irvine::Application.routes.draw do
-  get "store/index"
 
   resources :restaurants do
     resources :menus
   end
 
   root 'store#index'
+
+  get '/:restaurant_name', to: 'store#show', as: 'store'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
