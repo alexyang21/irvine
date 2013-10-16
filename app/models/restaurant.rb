@@ -6,4 +6,8 @@ class Restaurant < ActiveRecord::Base
     with:     %r{\.(gif|jpg|png)\Z}i,
     message:  'must be a URL for GIF, JPG or PNG image.'
   }
+
+  def self.latest
+    Restaurant.order(:updated_at).last
+  end
 end

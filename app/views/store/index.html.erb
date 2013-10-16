@@ -2,23 +2,32 @@
 <p id="notice"><%= notice %></p> <% end %>
 
 <div class="center">
-  <h1>Choose your restaurant</h1>
+  <h1>Choose from <%= pluralize(@restaurants.count, 'restaurant') %></h1>
 </div>
 
 <br>
 
 <div class="row">
-  <% @restaurants.each do |restaurant| %>
-    <div class="col-md-3">
-      <%= image_tag(restaurant.image_url, class: "store_image") %>
 
-      <div class="store_name center">
-        <h4><%= restaurant.name %></h4>
-      </div>
-      <div class="store_description center">
-        <h5><%= restaurant.description %></h5>
-      </div>
+  <% cache ['store', Restaurant.latest] do %>
 
-    </div><!-- /.col-md-3 -->
-  <% end %>
+    <% @restaurants.each do |restaurant| %>
+
+      <% cache ['restaurant', restaurant] do %>
+
+        <div class="col-md-3">
+          <%= image_tag(restaurant.image_url, class: "store_image") %>
+
+          <div class="store_name center">
+            <h4><%= restaurant.name %></h4>
+          </div>
+          <div class="store_description center">
+            <h5><%= restaurant.description %></h5>
+          </div>
+        </div><!-- /.col-md-3 -->
+
+      <% end %><!-- /cache 'restaurant' -->
+    <% end %><!-- /@restaurants.each -->
+  <% end %><!-- /cache 'store' -->
+
 </div> <!-- /.row -->
