@@ -1,2 +1,24 @@
-<h1>Store#index</h1>
-<p>Find me in app/views/store/index.html.erb</p>
+<% if notice %>
+<p id="notice"><%= notice %></p> <% end %>
+
+<div class="center">
+  <h1>Choose your restaurant</h1>
+</div>
+
+<br>
+
+<div class="row">
+  <% @restaurants.each do |restaurant| %>
+    <div class="col-md-3">
+      <%= image_tag(restaurant.image_url, class: "store_image") %>
+
+      <div class="store_name center">
+        <h4><%= restaurant.name %></h4>
+      </div>
+      <div class="store_description center">
+        <h5><%= restaurant.description %></h5>
+      </div>
+
+    </div><!-- /.col-md-3 -->
+  <% end %>
+</div> <!-- /.row -->
