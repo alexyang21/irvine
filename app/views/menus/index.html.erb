@@ -1,29 +1,22 @@
 <h1>Listing menus</h1>
 
 <table>
-  <thead>
+  <% @menus.each do |menu| %>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <td class="menu_info">
+        <dl>
+          <dt><%= menu.name %> - <%= menu.price %></dt>
+          <dd><%= menu.description %></dd>
+        </dl>
+      </td>
+      <td class="menu_actions">
+        <%= link_to 'Show', menu %>
+        <%= link_to 'Edit', edit_menu_path(menu) %>
+        <%= link_to 'Destroy', menu, method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @menus.each do |menu| %>
-      <tr>
-        <td><%= menu.name %></td>
-        <td><%= menu.description %></td>
-        <td><%= menu.price %></td>
-        <td><%= link_to 'Show', menu %></td>
-        <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
-        <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% end %>
 </table>
 
 <br>

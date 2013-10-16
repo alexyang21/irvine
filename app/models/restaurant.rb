@@ -1,4 +1,5 @@
 class Restaurant < ActiveRecord::Base
+  has_many :menus, dependent: :destroy
 
   validates :name, :description, :image_url, presence: true
   validates :name, uniqueness: true

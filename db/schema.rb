@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016003355) do
+ActiveRecord::Schema.define(version: 20131016053145) do
+
+  create_table "menus", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price",         precision: 5, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "restaurant_id"
+  end
+
+  add_index "menus", ["restaurant_id"], name: "index_menus_on_restaurant_id"
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
