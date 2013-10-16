@@ -1,8 +1,9 @@
 Irvine::Application.routes.draw do
-  resources :menus
-
   get "store/index"
-  resources :restaurants
+
+  resources :restaurants do
+    resources :menus
+  end
 
   root 'store#index', as: 'store'
 

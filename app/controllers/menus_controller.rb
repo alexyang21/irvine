@@ -1,10 +1,11 @@
 class MenusController < ApplicationController
+  before_filter :get_restaurant
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   # GET /menus
   # GET /menus.json
   def index
-    @menus = Menu.all
+    @menus = @restaurant.menus.all
   end
 
   # GET /menus/1
@@ -14,7 +15,7 @@ class MenusController < ApplicationController
 
   # GET /menus/new
   def new
-    @menu = Menu.new
+    @menu = @restaurant.menus.new
   end
 
   # GET /menus/1/edit
@@ -24,11 +25,11 @@ class MenusController < ApplicationController
   # POST /menus
   # POST /menus.json
   def create
-    @menu = Menu.new(menu_params)
+    @menu = @restaurant.menus.new(menu_params)
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
+        format.html { redirect_to [@restaurant, @menu], notice: 'Menu was successfully created.' }
         format.json { render action: 'show', status: :created, location: @menu }
       else
         format.html { render action: 'new' }
@@ -42,7 +43,7 @@ class MenusController < ApplicationController
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to @menu, notice: 'Menu was successfully updated.' }
+        format.html { redirect_to [@restaurant, @menu], notice: 'Menu was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +57,7 @@ class MenusController < ApplicationController
   def destroy
     @menu.destroy
     respond_to do |format|
-      format.html { redirect_to menus_url }
+      format.html { redirect_to restaurant_menus_url(@restaurant) }
       format.json { head :no_content }
     end
   end
@@ -64,11 +65,15 @@ class MenusController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
-      @menu = Menu.find(params[:id])
+      @menu = @restaurant.menus.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
       params.require(:menu).permit(:name, :description, :price)
+    end
+
+    def get_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
 end
