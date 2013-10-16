@@ -15,11 +15,17 @@
         </dl>
       </td>
       <td class="menu_actions">
-        <%= link_to 'Show', restaurant_menu_path(@restaurant, menu) %>
-        <%= link_to 'Edit', edit_restaurant_menu_path(
-            @restaurant, menu) %>
-        <%= link_to 'Destroy', [@restaurant, menu],
-            method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to restaurant_menu_path(@restaurant, menu) do %>
+          <span class="glyphicon glyphicon-zoom-in"></span> Show
+        <% end %>
+        |
+        <%= link_to edit_restaurant_menu_path(@restaurant, menu) do %>
+          <span class="glyphicon glyphicon-edit"></span> Edit
+        <% end %>
+        |
+        <%= link_to [@restaurant, menu], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class="glyphicon glyphicon-trash"></span> Delete
+        <% end %>
       </td>
     </tr>
   <% end %>

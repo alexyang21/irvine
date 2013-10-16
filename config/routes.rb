@@ -5,7 +5,7 @@ Irvine::Application.routes.draw do
     resources :menus
   end
 
-  root 'store#index', as: 'store'
+  root 'store#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

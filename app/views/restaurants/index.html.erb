@@ -13,9 +13,17 @@
         </dl>
       </td>
       <td class="restaurant_actions">
-        <%= link_to 'Show', restaurant %>
-        <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
-        <%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to restaurant do %>
+          <span class="glyphicon glyphicon-zoom-in"></span> Show
+        <% end %>
+        |
+        <%= link_to edit_restaurant_path(restaurant) do %>
+          <span class="glyphicon glyphicon-edit"></span> Edit
+        <% end %>
+        |
+        <%= link_to restaurant, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class="glyphicon glyphicon-trash"></span> Delete
+        <% end %>
       </td>
     </tr>
   <% end %>

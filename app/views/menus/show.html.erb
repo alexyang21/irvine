@@ -15,5 +15,9 @@
   <%= @menu.price %>
 </p>
 
-<%= link_to 'Edit', edit_restaurant_menu_path(@restaurant, @menu) %> |
-<%= link_to 'Back', restaurant_menus_path(@restaurant) %>
+<%= link_to edit_restaurant_menu_path(@restaurant, @menu) do %>
+  <span class="glyphicon glyphicon-edit"></span> Edit
+<% end %> |
+<%= link_to restaurant_menus_path(@restaurant) do %>
+  <span class="glyphicon glyphicon-chevron-left"></span> Back
+<% end %>

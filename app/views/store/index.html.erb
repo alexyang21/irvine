@@ -18,7 +18,8 @@
       <% cache ['restaurant', restaurant] do %>
 
         <div class="col-md-3">
-          <%= image_tag(restaurant.image_url, class: "store_image") %>
+          <%= link_to(image_tag(restaurant.image_url,
+              class: "store_image"), "#") %>
 
           <div class="store_name center">
             <h4><%= restaurant.name %></h4>

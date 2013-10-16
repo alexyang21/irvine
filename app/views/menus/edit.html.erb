@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', restaurant_menus_path(@restaurant, @menu) %> |
-<%= link_to 'Back', restaurant_menus_path(@restaurant) %>
+<%= link_to restaurant_menu_path(@restaurant, @menu) do %>
+  <span class="glyphicon glyphicon-zoom-in"></span> Show
+<% end %>
+|
+<%= link_to restaurant_menus_path(@restaurant) do %>
+  <span class="glyphicon glyphicon-chevron-left"></span> Back
+<% end %>
