@@ -9,14 +9,13 @@
 </head>
 
 <body class='<%= controller.controller_name %>'>
-  <div class="container">
 
-    <%= render 'layouts/header' %>
+  <%= render 'layouts/header' %>
 
-    <%= yield %>
+    <div class="container">
 
-    <%= render 'layouts/footer' %>
-
+      <%= yield %>
+      <%= render 'layouts/footer' %>
   </div>
 </body>
 </html>
