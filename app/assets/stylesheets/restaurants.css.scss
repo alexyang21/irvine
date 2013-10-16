@@ -1,3 +1,17 @@
-// Place all the styles related to the Restaurants controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.restaurants {
+  .restaurant_image {
+    width: 200px;
+    height: 140px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .restaurant_name {
+    display: block;
+  }
+
+  .restaurant_description {
+    display: block;
+  }
+}
