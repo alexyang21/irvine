@@ -9,3 +9,8 @@ two:
   name: MyString
   description: MyText
   image_url: MyString
+
+micks:
+  name: Mick's Karma Bar
+  description: Burgers
+  image_url: micks.jpg
