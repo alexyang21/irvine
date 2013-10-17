@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017001422) do
+ActiveRecord::Schema.define(version: 20131017035418) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "items", force: true do |t|
+    t.integer  "menu_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["cart_id"], name: "index_items_on_cart_id"
+  add_index "items", ["menu_id"], name: "index_items_on_menu_id"
 
   create_table "menus", force: true do |t|
     t.string   "name"
