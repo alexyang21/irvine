@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_filter :check_item_from_same_restaurant, only: [:create]
 
@@ -58,10 +58,20 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item.destroy
+    if @item.quantity > 1
+      @item.update_attributes(quantity: (@item.quantity - 1))
+    else
+      @item.destroy
+    end
+
     respond_to do |format|
-      format.html { redirect_to items_url }
-      format.json { head :no_content }
+      if @cart.items.empty?
+        format.html { redirect_to(root_url, notice: "Cart is now empty") }
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to(cart_url(session[:cart_id])) }
+        format.xml  { head :ok }
+      end
     end
   end
 

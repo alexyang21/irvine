@@ -7,12 +7,12 @@
 <div class="table-responsive">
   <table class="table table-hover">
     <colgroup>
-      <col class="col-md-3"></col>
+      <col class="col-md-2"></col>
       <col class="col-md-1"></col>
-      <col class="col-md-1"></col>
+      <col class="col-md-4"></col>
       <col class="col-md-1"></col>
     </colgroup>
-    <thead class="headings">
+    <thead class="bold">
       <tr>
         <th>Item</td>
         <th class="center">Price</td>
@@ -28,7 +28,13 @@
           <td class="center">
             <%= number_to_currency(item.menu.price) %>
           </td>
-          <td class="center">&times;<%= item.quantity %></td>
+          <td class="center">
+            <%= button_to '-', item, method: :delete,
+                class: "btn btn-danger btn-sm pull-left" %>
+            &times;<%= item.quantity %>
+            <%= button_to '+', items_path(menu_id: item.menu),
+                class: "btn btn-success btn-sm pull-right" %>
+          </td>
           <td class="center">
             <%= number_to_currency(item.total_price) %>
           </td>
@@ -37,7 +43,7 @@
     </tbody>
 
     <tfoot>
-      <tr class="total_line">
+      <tr class="total_line bold">
         <td></td>
         <td></td>
         <td class="center">TOTAL</td>
@@ -52,6 +58,11 @@
 <br>
 
 <div class="row">
+  <div class="col-md-1">
+    <%= link_to store_path(@cart.items.first.menu.restaurant.name) do %>
+      <span class="glyphicon glyphicon-chevron-left"></span> Back
+    <% end %>
+  </div>
   <div class="col-md-1">
     <%= button_to 'Empty cart', @cart, method: :delete,
         data: { confirm: 'Are you sure?' },

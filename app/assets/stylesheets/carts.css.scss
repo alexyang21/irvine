@@ -3,14 +3,19 @@
   .table {
     width: 50%;
   }
-
-  .headings {
+  .bold {
     font-weight: bold;
   }
-
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+  .inline_block {
+    display: inline;
+  }
   .total_line {
-    font-weight: bold;
-
     .total_cell {
       border-top: 1px solid #000000;
     }
