@@ -1,5 +1,7 @@
 Irvine::Application.routes.draw do
 
+  resources :carts
+
   resources :restaurants do
     resources :menus
   end
