@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     menu = Menu.find(params[:menu_id])
-    @item = @cart.items.build(menu: menu)
+    @item = @cart.add_menu(menu.id)
 
     respond_to do |format|
       if @item.save
