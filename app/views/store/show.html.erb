@@ -14,10 +14,12 @@
         <h4>
           <%= menu.name %> - <%= number_to_currency(menu.price) %>
         </h4>
+        <%= button_to 'Add to Cart', items_path(menu_id: menu) %>
       </div>
       <div class="menu_listing_description">
         <%= menu.description %>
       </div>
+
     </div>
 
   <% end %>

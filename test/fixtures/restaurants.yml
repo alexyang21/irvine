@@ -4,13 +4,16 @@ one:
   name: MyString
   description: MyText
   image_url: MyString
+  id: 1
 
 two:
   name: MyString
   description: MyText
   image_url: MyString
+  id: 2
 
 micks:
   name: Mick's Karma Bar
   description: Burgers
   image_url: micks.jpg
+  id: 3

@@ -4,8 +4,16 @@ one:
   name: MyString
   description: MyText
   price: 9.99
+  restaurant_id: 1
 
 two:
   name: MyString
   description: MyText
   price: 9.99
+  restaurant_id: 2
+
+karma:
+  name: The Karma Burger
+  description: 100% Sirloin Steak Burger
+  price: 5.75
+  restaurant_id: 3

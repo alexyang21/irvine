@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  include CurrentCart
+  before_action :set_cart, only: [:create]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
@@ -24,11 +26,13 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    menu = Menu.find(params[:menu_id])
+    @item = @cart.items.build(menu: menu)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @item.cart,
+          notice: 'Item was successfully created.' }
         format.json { render action: 'show', status: :created, location: @item }
       else
         format.html { render action: 'new' }

@@ -18,10 +18,10 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should create item" do
     assert_difference('Item.count') do
-      post :create, item: { cart_id: @item.cart_id, menu_id: @item.menu_id }
+      post :create, menu_id: menus(:karma).id
     end
 
-    assert_redirected_to item_path(assigns(:item))
+    assert_redirected_to cart_path(assigns(:item).cart)
   end
 
   test "should show item" do
