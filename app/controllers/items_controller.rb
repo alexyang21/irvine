@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_filter :check_item_from_same_restaurant, only: [:create]
 
   # GET /items
   # GET /items.json
@@ -74,5 +75,14 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:menu_id, :cart_id)
+    end
+
+    def check_item_from_same_restaurant
+      menu = Menu.find(params[:menu_id])
+      @cart.items.each do |item|
+        if item.menu.restaurant != menu.restaurant
+          item.destroy
+        end
+      end
     end
 end

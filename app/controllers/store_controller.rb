@@ -17,5 +17,4 @@ class StoreController < ApplicationController
         redirect_to root_path, notice: "Restaurant does not exist"
       end
     end
-
 end
