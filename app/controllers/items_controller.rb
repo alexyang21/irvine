@@ -32,8 +32,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item.cart,
-          notice: 'Item was successfully created.' }
+        format.html { redirect_to @item.cart }
         format.json { render action: 'show', status: :created, location: @item }
       else
         format.html { render action: 'new' }
@@ -74,7 +73,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:menu_id, :cart_id)
+      params.require(:item).permit(:menu_id)
     end
 
     def check_item_from_same_restaurant

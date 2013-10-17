@@ -1,3 +1,19 @@
-// Place all the styles related to the Carts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.carts {
+
+  .table {
+    width: 50%;
+  }
+
+  .headings {
+    font-weight: bold;
+  }
+
+  .total_line {
+    font-weight: bold;
+
+    .total_cell {
+      border-top: 1px solid #000000;
+    }
+  }
+
+}

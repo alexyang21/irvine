@@ -35,7 +35,7 @@ class ItemsControllerTest < ActionController::TestCase
   end
 
   test "should update item" do
-    patch :update, id: @item, item: { cart_id: @item.cart_id, menu_id: @item.menu_id }
+    patch :update, id: @item, item: { menu_id: @item.menu_id }
     assert_redirected_to item_path(assigns(:item))
   end
 
