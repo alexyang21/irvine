@@ -29,7 +29,9 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to [@restaurant, @menu], notice: 'Menu was successfully created.' }
+        format.html {
+          redirect_to [@restaurant, @menu]
+          flash[:success] = "Menu was successfully created." }
         format.json { render action: 'show', status: :created, location: @menu }
       else
         format.html { render action: 'new' }
@@ -43,7 +45,9 @@ class MenusController < ApplicationController
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to [@restaurant, @menu], notice: 'Menu was successfully updated.' }
+        format.html {
+          redirect_to [@restaurant, @menu]
+          flash[:success] = "Menu was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,7 +61,9 @@ class MenusController < ApplicationController
   def destroy
     @menu.destroy
     respond_to do |format|
-      format.html { redirect_to restaurant_menus_url(@restaurant) }
+      format.html {
+        redirect_to restaurant_menus_url(@restaurant)
+        flash[:success] = "Menu item removed from listing" }
       format.json { head :no_content }
     end
   end

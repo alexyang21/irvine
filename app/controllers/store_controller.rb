@@ -14,7 +14,8 @@ class StoreController < ApplicationController
     def check_restaurant
       @restaurant = Restaurant.find_by name: (params[:restaurant_name])
       if @restaurant.nil?
-        redirect_to root_url, notice: "Restaurant does not exist"
+        redirect_to root_url
+        flash[:warning] = "Restaurant does not exist"
       end
     end
 end

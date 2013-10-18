@@ -46,7 +46,9 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html {
+          redirect_to @item
+          flash[:success] = "Item was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -66,7 +68,9 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @cart.items.empty?
-        format.html { redirect_to(root_url, notice: "Cart is now empty") }
+        format.html {
+          redirect_to(root_url)
+          flash[:info] = "Cart is now empty" }
         format.xml  { head :ok }
       else
         format.html { redirect_to(cart_url(session[:cart_id])) }

@@ -29,7 +29,9 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html {
+          redirect_to @cart
+          flash[:success] = "Cart was successfully created." }
         format.json { render action: 'show', status: :created, location: @cart }
       else
         format.html { render action: 'new' }
@@ -43,7 +45,9 @@ class CartsController < ApplicationController
   def update
     respond_to do |format|
       if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
+        format.html {
+          redirect_to @cart
+          flash[:success] = "Cart was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -58,8 +62,9 @@ class CartsController < ApplicationController
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to root_url,
-                    notice: 'Your cart is currently empty' }
+      format.html {
+        redirect_to root_url
+        flash[:info] = "Your cart is currently empty" }
       format.json { head :no_content }
     end
   end
@@ -77,6 +82,7 @@ class CartsController < ApplicationController
 
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
-      redirect_to root_url, notice: 'Invalid cart'
+      redirect_to root_url
+      flash[:danger] = "Invalid cart"
     end
 end
