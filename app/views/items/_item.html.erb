@@ -5,15 +5,20 @@
   </td>
   <td class="center">
     <div class="pull-left">
-      <%= button_to '-', item, method: :delete,
-         class: "btn btn-danger btn-sm btn_margin" %>
+      <%= link_to item, method: :delete, class: "btn btn-danger btn-xs
+        btn_margin" do %>
+          <i class="glyphicon glyphicon-minus white"></i>
+      <% end %>
+
     </div>
 
     &times;<%= item.quantity %>
 
     <div class="pull-right">
-      <%= button_to '+', items_path(menu_id: item.menu),
-          class: "btn btn-success btn-sm btn_margin" %>
+      <%= link_to items_path(menu_id: item.menu),
+        class: "btn btn-success btn-xs btn_margin" do %>
+          <i class="glyphicon glyphicon-plus white"></i>
+      <% end %>
     </div>
   </td>
   <td class="center">

@@ -43,10 +43,11 @@
     <% end %>
   </div>
   <div class="col-md-1">
-    <div class="btn-group btn-group-lg">
-      <%= button_to 'Empty cart', cart, method: :delete,
-          data: { confirm: 'Are you sure?' },
-          class: "btn btn-danger btn_inline" %>
-    </div>
+    <%= link_to cart, method: :delete,
+      data: { confirm: 'Are you sure?' },
+      class: "btn btn-danger" do %>
+        <i class="glyphicon glyphicon-trash white"></i>
+        <span class="white">Empty cart</span>
+    <% end %>
   </div>
 </div>
