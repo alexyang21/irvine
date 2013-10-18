@@ -14,15 +14,15 @@
       </td>
       <td class="restaurant_actions">
         <%= link_to restaurant do %>
-          <span class="glyphicon glyphicon-zoom-in"></span> Show
+          <i class="glyphicon glyphicon-zoom-in"></i> Show
         <% end %>
         |
         <%= link_to edit_restaurant_path(restaurant) do %>
-          <span class="glyphicon glyphicon-edit"></span> Edit
+          <i class="glyphicon glyphicon-edit"></i> Edit
         <% end %>
         |
         <%= link_to restaurant, method: :delete, data: { confirm: 'Are you sure?' } do %>
-          <span class="glyphicon glyphicon-trash"></span> Delete
+          <i class="glyphicon glyphicon-trash"></i> Delete
         <% end %>
       </td>
     </tr>
@@ -32,5 +32,5 @@
 <br>
 
 <%= link_to new_restaurant_path do %>
-  <span class="glyphicon glyphicon-plus"></span> Add Restaurant
+  <i class="glyphicon glyphicon-plus"></i> Add Restaurant
 <% end %>

@@ -8,5 +8,9 @@
   <%= @item.cart %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to edit_item_path(@item) do %>
+  <i class="glyphicon glyphicon-edit"></i> Edit
+<% end %> |
+<%= link_to items_path do %>
+  <i class="glyphicon glyphicon-chevron-left"></i> Back
+<% end %>

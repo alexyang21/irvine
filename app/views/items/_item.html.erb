@@ -15,7 +15,7 @@
     &times;<%= item.quantity %>
 
     <div class="pull-right">
-      <%= link_to items_path(menu_id: item.menu),
+      <%= link_to items_path(menu_id: item.menu), method: :post,
         class: "btn btn-success btn-xs btn_margin" do %>
           <i class="glyphicon glyphicon-plus white"></i>
       <% end %>
