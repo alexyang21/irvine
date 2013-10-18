@@ -1,17 +1,12 @@
-.carts {
+.carts .side_bar {
 
-  .table {
-    width: 50%;
-  }
   .bold {
     font-weight: bold;
   }
   .quantity {
-    // float: center;
     width: auto;
   }
   .total_line {
-
     .total_cell {
       border-top: 1px solid #000000;
     }
@@ -25,5 +20,26 @@
   }
   .btn_margin {
     margin-top: -1px;
+  }
+}
+
+// Set table width for sidebar content when not in cart view
+.side_bar {
+  .table {
+    width: 100%;
+  }
+}
+
+.carts {
+  // Set table width for main content in cart view
+  .table {
+    width: 80%;
+  }
+
+  // Set table width for sidebar content in cart view
+  .side_bar {
+    .table {
+      width: 100%
+    }
   }
 }

@@ -13,16 +13,36 @@
   <%= render 'layouts/header' %>
 
   <div class="container">
+
+    <!-- Display flash messages -->
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
 
-    <div class="main_bar">
-      <%= yield %>
+    <div class="row">
+      <div class="col-md-8">
+        <%= yield %>
+      </div>
+      <div class="col-md-4 side_bar">
+        <%= render @cart %>
+      </div>
     </div>
-    <div class="side_bar">
-      H
-    </div>
+
+    <% if false %>
+      <div class="row">
+
+        <!-- Main content -->
+        <div class="col-md-8">
+          <%= yield %>
+        </div>
+
+        <!-- Sidebar for cart -->
+        <div class="col-md-4 side_bar">
+          <%= render @cart %>
+        </div>
+      </div>
+    <% end %>
+
     <%= render 'layouts/footer' %>
   </div>
 
