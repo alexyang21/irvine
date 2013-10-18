@@ -9,15 +9,15 @@
     <colgroup>
       <col class="col-md-2"></col>
       <col class="col-md-1"></col>
-      <col class="col-md-4"></col>
+      <col class="col-md-1"></col>
       <col class="col-md-1"></col>
     </colgroup>
     <thead class="bold">
       <tr>
-        <th>Item</td>
-        <th class="center">Price</td>
-        <th class="center">Quantity</td>
-        <th class="center">Subtotal</td>
+        <th>Item</th>
+        <th class="center">Price</th>
+        <th class="center">Quantity</th>
+        <th class="center">Subtotal</th>
       </tr>
     </thead>
 
@@ -29,11 +29,17 @@
             <%= number_to_currency(item.menu.price) %>
           </td>
           <td class="center">
-            <%= button_to '-', item, method: :delete,
-                class: "btn btn-danger btn-sm pull-left" %>
+            <div class="pull-left">
+              <%= button_to '-', item, method: :delete,
+                 class: "btn btn-danger btn-sm btn_margin" %>
+            </div>
+
             &times;<%= item.quantity %>
-            <%= button_to '+', items_path(menu_id: item.menu),
-                class: "btn btn-success btn-sm pull-right" %>
+
+            <div class="pull-right">
+              <%= button_to '+', items_path(menu_id: item.menu),
+                  class: "btn btn-success btn-sm btn_margin" %>
+            </div>
           </td>
           <td class="center">
             <%= number_to_currency(item.total_price) %>
@@ -44,9 +50,9 @@
 
     <tfoot>
       <tr class="total_line bold">
-        <td></td>
-        <td></td>
-        <td class="center">TOTAL</td>
+        <td class="total_cell"></td>
+        <td class="total_cell"></td>
+        <td class="total_cell center">TOTAL</td>
         <td class="total_cell center">
           <%= number_to_currency(@cart.total_price) %>
         </td>
@@ -58,14 +64,16 @@
 <br>
 
 <div class="row">
-  <div class="col-md-1">
+  <div class="col-md-3">
     <%= link_to store_path(@cart.items.first.menu.restaurant.name) do %>
       <span class="glyphicon glyphicon-chevron-left"></span> Back
     <% end %>
   </div>
   <div class="col-md-1">
-    <%= button_to 'Empty cart', @cart, method: :delete,
-        data: { confirm: 'Are you sure?' },
-        class: "btn btn-danger btn-sm" %>
+    <div class="btn-group btn-group-lg">
+      <%= button_to 'Empty cart', @cart, method: :delete,
+          data: { confirm: 'Are you sure?' },
+          class: "btn btn-danger btn_inline" %>
+    </div>
   </div>
 </div>

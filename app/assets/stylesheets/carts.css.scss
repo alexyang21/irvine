@@ -6,19 +6,28 @@
   .bold {
     font-weight: bold;
   }
-  .left {
-    float: left;
-  }
-  .right {
-    float: right;
-  }
-  .inline_block {
-    display: inline;
+  .quantity {
+    // float: center;
+    width: auto;
   }
   .total_line {
+
     .total_cell {
       border-top: 1px solid #000000;
     }
+  }
+
+  .minus_button {
+    float: left;
+  }
+  .plus_button {
+    float: right;
+  }
+  .btn_margin {
+    margin-top: -5px;
+  }
+  .btn_inline {
+    display: inline;
   }
 
 }

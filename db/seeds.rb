@@ -39,11 +39,11 @@ Menu.create!( restaurant_id: 1,
                 & cilantro dressing",
               price: 9.99)
 Menu.create!( restaurant_id: 1,
-              name:  "Cajun Seared Ahi",
+              name:  "Asian Shrimp",
               description:
-                "Mixed greens, sprouts, green onions, cotija cheese,
-                cherry tomatoes, red onions, cilantro, pumpkin seeds,
-                & cilantro dressing",
+                "Mixed greens, sprouts, cilantro, sesame seeds,
+                cherry tomatoes, almonds, fried wontons, red onions,
+                green onions, & asian dressing",
               price: 9.99)
 Menu.create!( restaurant_id: 2,
               name:  "Edamame",

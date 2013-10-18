@@ -14,13 +14,18 @@
         <h4>
           <%= menu.name %> - <%= number_to_currency(menu.price) %>
         </h4>
+        <%= button_to 'Add to Cart', items_path(menu_id: menu),
+            class: "btn btn-primary btn-sm store_button" %>
       </div>
       <div class="menu_listing_description">
         <%= menu.description %>
       </div>
-      <%= button_to 'Add to Cart', items_path(menu_id: menu),
-          class: "btn btn-primary store_button" %>
+      <br>
     </div>
 
   <% end %>
 </div>
+
+<%= link_to root_path do %>
+  <span class="glyphicon glyphicon-chevron-left"></span> Back
+<% end %>
