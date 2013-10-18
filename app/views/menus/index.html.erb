@@ -33,4 +33,6 @@
 
 <br>
 
-<%= link_to 'New Menu', new_restaurant_menu_path(@restaurant) %>
+<%= link_to new_restaurant_menu_path(@restaurant) do %>
+  <span class="glyphicon glyphicon-plus"></span> Add Menu Item
+<% end %>

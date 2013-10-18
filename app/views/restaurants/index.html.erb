@@ -31,4 +31,6 @@
 
 <br>
 
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<%= link_to new_restaurant_path do %>
+  <span class="glyphicon glyphicon-plus"></span> Add Restaurant
+<% end %>
