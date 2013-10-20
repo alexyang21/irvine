@@ -1,4 +1,4 @@
-.carts .side_bar {
+.carts, .side_bar {
 
   .bold {
     font-weight: bold;
@@ -31,6 +31,7 @@
 }
 
 .carts {
+
   // Set table width for main content in cart view
   .table {
     width: 80%;

@@ -37,11 +37,6 @@
 <br>
 
 <div class="row">
-  <div class="col-md-3">
-    <%= link_to store_path(cart.items.first.menu.restaurant.name) do %>
-      <i class="glyphicon glyphicon-chevron-left"></i> Back
-    <% end %>
-  </div>
   <div class="col-md-1">
     <%= link_to cart, method: :delete,
       data: { confirm: 'Are you sure?' },

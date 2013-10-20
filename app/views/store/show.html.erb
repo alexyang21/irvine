@@ -20,7 +20,7 @@
       </div>
       <br>
       <%= link_to items_path(menu_id: menu), method: :post,
-        class: "btn btn-primary btn-sm" do %>
+        class: "btn btn-primary btn-sm", remote: true do %>
           <i class="glyphicon glyphicon-plus white"></i>
           <span class="white">Add to cart</span>
       <% end %>

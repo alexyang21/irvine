@@ -23,25 +23,12 @@
       <div class="col-md-8">
         <%= yield %>
       </div>
-      <div class="col-md-4 side_bar">
-        <%= render @cart %>
-      </div>
-    </div>
-
-    <% if false %>
-      <div class="row">
-
-        <!-- Main content -->
-        <div class="col-md-8">
-          <%= yield %>
-        </div>
-
-        <!-- Sidebar for cart -->
-        <div class="col-md-4 side_bar">
+      <div class="col-md-4">
+        <div class="side_bar">
           <%= render @cart %>
         </div>
       </div>
-    <% end %>
+    </div>
 
     <%= render 'layouts/footer' %>
   </div>

@@ -9,9 +9,7 @@
 <div class="row">
 
   <% cache ['store', Restaurant.latest] do %>
-
     <% @restaurants.each do |restaurant| %>
-
       <% cache ['restaurant', restaurant] do %>
 
         <div class="col-md-3">

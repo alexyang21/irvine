@@ -32,7 +32,10 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item.cart }
+        format.html {
+          redirect_to store_url(menu.restaurant.name)
+          flash[:success] = "Item added to cart" }
+        format.js
         format.json { render action: 'show', status: :created, location: @item }
       else
         format.html { render action: 'new' }
