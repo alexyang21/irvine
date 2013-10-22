@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
         format.html {
           redirect_to store_url(menu.restaurant.name)
           flash[:success] = "Item added to cart" }
-        format.js
+        format.js { @current_item = @item }
         format.json { render action: 'show', status: :created, location: @item }
       else
         logger.info "Item not saved!"
