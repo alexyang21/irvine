@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_filter :check_item_from_same_restaurant, only: [:create]
+  before_action :check_item_from_same_restaurant, only: [:create]
 
   # GET /items
   # GET /items.json
@@ -28,16 +28,35 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     menu = Menu.find(params[:menu_id])
+    # logger.info "Before entering loop, #{@cart.items.count} items in cart"
+
+    # @cart.items.each do |item|
+    #   if item.menu.restaurant != menu.restaurant
+    #     logger.info "In horrible loop!"
+    #     item.destroy
+    #   end
+    # end
+
+    # if @cart.items.count > 0
+    #   logger.info "Before adding item, cart item quantity is #{@cart.items.first.quantity}"
+    # end
+
     @item = @cart.add_menu(menu.id)
+
+    # logger.info "After adding item, item quantity is now #{@item.quantity}"
+    # logger.info "After adding item, cart item quantity is #{@cart.items.first.quantity}"
 
     respond_to do |format|
       if @item.save
+        # logger.info "After saving, item quantity is now #{@item.quantity}"
+        # logger.info "After saving, cart item quantity is #{@cart.items.first.quantity}"
         format.html {
           redirect_to store_url(menu.restaurant.name)
           flash[:success] = "Item added to cart" }
         format.js
         format.json { render action: 'show', status: :created, location: @item }
       else
+        logger.info "Item not saved!"
         format.html { render action: 'new' }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
@@ -94,11 +113,12 @@ class ItemsController < ApplicationController
     end
 
     def check_item_from_same_restaurant
-      menu = Menu.find(params[:menu_id])
-      @cart.items.each do |item|
-        if item.menu.restaurant != menu.restaurant
-          item.destroy
-        end
-      end
+      # menu = Menu.find(params[:menu_id])
+
+      # @cart.items.each do |item|
+      #   if item.menu.restaurant != menu.restaurant
+      #     item.destroy
+      #   end
+      # end
     end
 end
