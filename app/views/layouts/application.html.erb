@@ -25,7 +25,9 @@
       </div>
       <div class="col-md-4">
         <div class="side_bar">
-          <%= render @cart %>
+          <%= hidden_div_if(@cart.items.empty?, class: 'side_bar') do %>
+            <%= render @cart %>
+          <% end %>
         </div>
       </div>
     </div>
