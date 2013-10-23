@@ -20,10 +20,10 @@
     <% end %>
 
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-9">
         <%= yield %>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= hidden_div_if(@cart.items.empty?, class: "side_bar") do %>
           <%= render @cart %>
         <% end %>
