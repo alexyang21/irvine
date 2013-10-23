@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create, :destroy]
+  before_action :set_cart, only: [:create, :destroy, :decrease, :increase]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :check_item_from_same_restaurant, only: [:create]
 
@@ -29,13 +29,6 @@ class ItemsController < ApplicationController
   def create
     menu = Menu.find(params[:menu_id])
     # logger.info "Before entering loop, #{@cart.items.count} items in cart"
-
-    # @cart.items.each do |item|
-    #   if item.menu.restaurant != menu.restaurant
-    #     logger.info "In horrible loop!"
-    #     item.destroy
-    #   end
-    # end
 
     # if @cart.items.count > 0
     #   logger.info "Before adding item, cart item quantity is #{@cart.items.first.quantity}"
@@ -82,21 +75,53 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    if @item.quantity > 1
-      @item.update_attributes(quantity: (@item.quantity - 1))
-    else
-      @item.destroy
-    end
+    @item.destroy
 
     respond_to do |format|
       if @cart.items.empty?
         format.html {
           redirect_to(root_url)
           flash[:info] = "Cart is now empty" }
+        format.js
         format.xml  { head :ok }
       else
         format.html { redirect_to(cart_url(session[:cart_id])) }
+        format.js
         format.xml  { head :ok }
+      end
+    end
+  end
+
+  # PUT /items/1
+  # PUT /items/1.json
+  def decrease
+    @item = @cart.decrease(params[:id])
+
+    respond_to do |format|
+      if @item.save
+        format.html { redirect_to root_url }
+        format.js { @current_item = @item }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /items/1
+  # PUT /items/1.json
+  def increase
+    @item = @cart.increase(params[:id])
+
+    respond_to do |format|
+      if @item.save
+        format.html { redirect_to root_url }
+        format.js
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end

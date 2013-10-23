@@ -1,6 +1,9 @@
 Irvine::Application.routes.draw do
 
-  resources :items
+  resources :items do
+    put 'decrease', on: :member
+    put 'increase', on: :member
+  end
 
   resources :carts
 

@@ -24,11 +24,9 @@
         <%= yield %>
       </div>
       <div class="col-md-4">
-        <div class="side_bar">
-          <%= hidden_div_if(@cart.items.empty?, class: 'side_bar') do %>
-            <%= render @cart %>
-          <% end %>
-        </div>
+        <%= hidden_div_if(@cart.items.empty?, class: "side_bar") do %>
+          <%= render @cart %>
+        <% end %>
       </div>
     </div>
 
