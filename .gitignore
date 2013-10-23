@@ -16,4 +16,4 @@
 /tmp
 
 # Ignore Stripe API keys
-/config/stripe.rb
+/config/initializers/stripe.rb
