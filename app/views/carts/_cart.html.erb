@@ -1,48 +1,49 @@
-<div class="center">
-  <h4>Your Cart</h4>
-</div>
+<div class="panel panel-default">
 
-<div class="table-responsive">
-  <table class="table table-hover">
-    <colgroup>
-      <col class="col-md-2"></col>
-      <col class="col-md-1"></col>
-      <col class="col-md-1"></col>
-      <col class="col-md-1"></col>
-    </colgroup>
-    <thead class="bold">
-      <tr>
-        <th>Item</th>
-        <th class="center">Price</th>
-        <th class="center">Quantity</th>
-        <th class="center">Subtotal</th>
-      </tr>
-    </thead>
+  <div class="panel-heading center">Your Cart</div>
 
-    <tbody>
-      <%= render(cart.items) %>
-    </tbody>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <colgroup>
+        <col class="col-md-2"></col>
+        <col class="col-md-1"></col>
+        <col class="col-md-1"></col>
+        <col class="col-md-1"></col>
+      </colgroup>
+      <thead class="bold">
+        <tr>
+          <th>Item</th>
+          <th class="center">Price</th>
+          <th class="center">Quantity</th>
+          <th class="center">Subtotal</th>
+        </tr>
+      </thead>
 
-    <tfoot>
-      <tr class="total_line bold">
-        <td class="total_cell"></td>
-        <td class="total_cell"></td>
-        <td class="total_cell center">TOTAL</td>
-        <td class="total_cell center">
-          <%= number_to_currency(cart.total_price) %>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</div>
+      <tbody>
+        <%= render(cart.items) %>
+      </tbody>
 
-<div class="row">
-  <div class="col-md-1">
-    <%= link_to cart, method: :delete, remote: true,
-      data: { confirm: 'Are you sure?' },
-      class: "btn btn-danger btn-xs" do %>
-        <i class="glyphicon glyphicon-trash white"></i>
-        <span class="white">Empty cart</span>
-    <% end %>
+      <tfoot>
+        <tr class="total_line bold">
+          <td class="total_cell"></td>
+          <td class="total_cell"></td>
+          <td class="total_cell center">TOTAL</td>
+          <td class="total_cell center">
+            <%= number_to_currency(cart.total_price) %>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 center">
+      <%= link_to cart, method: :delete, remote: true,
+        data: { confirm: 'Are you sure?' },
+        class: "btn btn-danger btn-xs" do %>
+          <i class="glyphicon glyphicon-trash white"></i>
+          <span class="white">Empty cart</span>
+      <% end %>
+    </div>
   </div>
 </div>
