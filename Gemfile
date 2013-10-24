@@ -11,6 +11,7 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'devise'
 gem 'stripe'
 
 group :doc do

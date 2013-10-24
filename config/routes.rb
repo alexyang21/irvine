@@ -11,7 +11,7 @@ Irvine::Application.routes.draw do
     resources :menus
   end
 
-  root 'store#index'
+  root "store#index"
 
   get '/:restaurant_name', to: 'store#show', as: 'store'
 
