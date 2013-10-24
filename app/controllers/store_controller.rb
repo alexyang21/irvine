@@ -1,7 +1,7 @@
 class StoreController < ApplicationController
   include CurrentCart
   before_action :set_cart
-  before_filter :check_restaurant, only: [:show]
+  before_action :check_restaurant, only: [:show]
 
   def index
     @restaurants = Restaurant.all

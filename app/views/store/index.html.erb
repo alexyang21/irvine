@@ -1,32 +1,40 @@
-<div class="center">
-  <h1>
-    Choose from <%= pluralize(@restaurants.count, 'restaurant') %>
-  </h1>
-</div>
-
-<br>
-
 <div class="row">
+  <div class="col-md-9">
+    <div class="center">
+      <h1>
+        Choose from <%= pluralize(@restaurants.count, 'restaurant') %>
+      </h1>
+    </div>
+    <br>
+    <div class="row">
 
-  <% cache ['store', Restaurant.latest] do %>
-    <% @restaurants.each do |restaurant| %>
-      <% cache ['restaurant', restaurant] do %>
+      <% cache ['store', Restaurant.latest] do %>
+        <% @restaurants.each do |restaurant| %>
+          <% cache ['restaurant', restaurant] do %>
 
-        <div class="col-md-3">
-          <%= link_to(image_tag(restaurant.image_url,
-              class: "store_image"),
-              store_path(restaurant.name)) %>
+            <div class="col-md-3">
+              <%= link_to(image_tag(restaurant.image_url,
+                  class: "store_image"),
+                  store_path(restaurant.name)) %>
 
-          <div class="store_name center">
-            <h4><%= restaurant.name %></h4>
-          </div>
-          <div class="store_description center">
-            <h5><%= restaurant.description %></h5>
-          </div>
-        </div><!-- /.col-md-3 -->
+              <div class="store_name center">
+                <h4><%= restaurant.name %></h4>
+              </div>
+              <div class="store_description center">
+                <h5><%= restaurant.description %></h5>
+              </div>
+            </div><!-- /.col-md-3 -->
 
-      <% end %><!-- /cache 'restaurant' -->
-    <% end %><!-- /@restaurants.each -->
-  <% end %><!-- /cache 'store' -->
+          <% end %><!-- /cache 'restaurant' -->
+        <% end %><!-- /@restaurants.each -->
+      <% end %><!-- /cache 'store' -->
 
-</div> <!-- /.row -->
+    </div> <!-- /.row -->
+  </div>
+
+  <div class="col-md-3">
+    <%= hidden_div_if(@cart.items.empty?, class: "side_bar") do %>
+      <%= render @cart %>
+    <% end %>
+  </div>
+</div>
