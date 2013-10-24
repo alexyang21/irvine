@@ -1,5 +1,6 @@
 Irvine::Application.routes.draw do
 
+  devise_for :users
   resources :items do
     put 'decrease', on: :member
     put 'increase', on: :member
