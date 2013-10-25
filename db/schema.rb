@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024221107) do
+ActiveRecord::Schema.define(version: 20131024233340) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 20131024221107) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "quantity",   default: 1
+    t.integer  "order_id"
   end
 
   add_index "items", ["cart_id"], name: "index_items_on_cart_id"
   add_index "items", ["menu_id"], name: "index_items_on_menu_id"
+  add_index "items", ["order_id"], name: "index_items_on_order_id"
 
   create_table "menus", force: true do |t|
     t.string   "name"
@@ -39,6 +41,17 @@ ActiveRecord::Schema.define(version: 20131024221107) do
   end
 
   add_index "menus", ["restaurant_id"], name: "index_menus_on_restaurant_id"
+
+  create_table "orders", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "restaurants", force: true do |t|
     t.string   "name"

@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'devise'
 gem 'stripe'
+gem 'figaro'
 
 group :doc do
   gem 'sdoc', require: false

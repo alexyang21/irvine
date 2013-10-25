@@ -25,9 +25,9 @@
 
       <tfoot>
         <tr class="total_line bold">
+          <td class="total_cell">TOTAL</td>
           <td class="total_cell"></td>
           <td class="total_cell"></td>
-          <td class="total_cell center">TOTAL</td>
           <td class="total_cell center">
             <%= number_to_currency(cart.total_price) %>
           </td>
@@ -37,13 +37,26 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12 center">
+    <div class="col-md-6 center">
       <%= link_to cart, method: :delete, remote: true,
         data: { confirm: 'Are you sure?' },
-        class: "btn btn-danger btn-xs" do %>
-          <i class="glyphicon glyphicon-trash white"></i>
-          <span class="white">Empty cart</span>
+        class: "btn btn-danger btn-sm" do %>
+
+        <i class="glyphicon glyphicon-trash white"></i>
+        <span class="white">Empty cart</span>
+
+      <% end %>
+    </div>
+
+    <div class="col-md-6 center">
+      <%= link_to new_order_path, method: :get,
+          class: "btn btn-success btn-sm" do %>
+
+          <i class="glyphicon glyphicon-cutlery white"></i>
+          <span class="white">Checkout</span>
+
       <% end %>
     </div>
   </div>
+  <br>
 </div>
