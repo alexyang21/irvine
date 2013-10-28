@@ -19,6 +19,9 @@ class OrdersController < ApplicationController
     if @cart.items.empty?
       redirect_to(root_url)
       flash[:info] = "Your cart is empty"
+    elsif current_user == nil
+      redirect_to(new_user_session_url)
+      flash[:info] = "You need to sign in to place an order"
     end
 
     @order = Order.new
@@ -50,7 +53,7 @@ class OrdersController < ApplicationController
         # Create the charge on Stripe's servers - this will charge the user's card
         begin
           charge = Stripe::Charge.create(
-            :amount => (100 * @order.items.to_a.sum(&:total_price)).to_i,
+            :amount => (100 * @order.total_price).to_i,
             :currency => "usd",
             :card => token,
             :description => "payinguser@example.com"
