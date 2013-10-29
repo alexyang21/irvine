@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Irvine::Application.config.secret_key_base = 'b5ede7e893009a7a6b16d1c9a2b015f420623ab48230443b0dd2ce9a19693107eb51fff26ba477345aaa6e73b109a4c7ba5d72b0d34df43b5cbe3cbc5bd34b1c'
+FlipOrder::Application.config.secret_key_base = 'b5ede7e893009a7a6b16d1c9a2b015f420623ab48230443b0dd2ce9a19693107eb51fff26ba477345aaa6e73b109a4c7ba5d72b0d34df43b5cbe3cbc5bd34b1c'

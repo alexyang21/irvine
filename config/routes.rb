@@ -1,4 +1,4 @@
-Irvine::Application.routes.draw do
+FlipOrder::Application.routes.draw do
 
   resources :orders
 

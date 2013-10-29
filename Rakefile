@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Irvine::Application.load_tasks
+FlipOrder::Application.load_tasks
