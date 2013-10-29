@@ -129,7 +129,10 @@ Menu.create!( restaurant_id: 5,
 User.delete_all
 User.create!( name:     "First User",
               email:    "first@example.com",
-              password: "Thanksgiving")
+              password: "FirstDollar")
 User.create!( name:     "Second User",
               email:    "second@example.com",
-              password: "Thanksgiving")
+              password: "FirstDollar")
+User.create!( name:     "Admin User",
+              email:    "admin@example.com",
+              password: "FirstDollar")
