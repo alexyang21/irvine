@@ -1,29 +1,28 @@
 class OrdersController < ApplicationController
   include CurrentCart
+  before_action :require_login
+  # before_action :authenticate_user, only: [:show]
   before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :check_cart_empty, only: [:new]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.order("updated_at DESC")
+    @orders = current_user.orders.order("updated_at DESC")
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    if current_user.id != @order.user_id
+      redirect_to(orders_url)
+      flash[:warning] = "You can only view orders placed from your account"
+    end
   end
 
   # GET /orders/new
   def new
-    if @cart.items.empty?
-      redirect_to(root_url)
-      flash[:info] = "Your cart is empty"
-    elsif current_user == nil
-      redirect_to(new_user_session_url)
-      flash[:info] = "You need to sign in to place an order"
-    end
-
     @order = Order.new
   end
 
@@ -35,6 +34,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
+
     # Remember to change this to your live secret key in production
     # Stripe.api_key = "sk_test_exK7Z2ID3F0IP0bTCmuXy4zo"
     Stripe.api_key = ENV["STRIPE_API_KEY"]
@@ -44,6 +44,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new(order_params)
     @order.add_items_from_cart(@cart)
+    @order.user_id = current_user.id
 
     respond_to do |format|
       if @order.save
@@ -105,5 +106,19 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:name, :email, :phone, :address, :city, :state)
+    end
+
+    def require_login
+      unless user_signed_in?
+        flash[:info] = "You need to sign in to place an order"
+        redirect_to(new_user_session_url)
+      end
+    end
+
+    def check_cart_empty
+      if @cart.items.empty?
+        redirect_to(root_url)
+        flash[:info] = "Your cart is empty"
+      end
     end
 end

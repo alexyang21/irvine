@@ -1,12 +1,10 @@
-<h1>Listing orders</h1>
-
-<table class="table table-responsive">
+<table class="table table-responsive table-striped">
   <thead>
     <tr>
-      <th>Time of Order</th>
-      <th>Restaurant</th>
-      <th>Order Size</th>
-      <th>Name</th>
+      <th class="center">Time of Order</th>
+      <th class="center">Restaurant</th>
+      <th class="center">Order Size</th>
+      <th class="center">Name</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,14 +14,14 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td>
+        <td class="center">
           <%= order.updated_at.
               in_time_zone("Pacific Time (US & Canada)").
               strftime('%m/%d/%Y %l:%M %P') %>
         </td>
-        <td><%= order.items.first.menu.restaurant.name %></td>
-        <td><%= number_to_currency(order.total_price) %></td>
-        <td><%= order.name %></td>
+        <td class="center"><%= order.items.first.menu.restaurant.name %></td>
+        <td class="center"><%= number_to_currency(order.total_price) %></td>
+        <td class="center"><%= order.name %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -34,4 +32,7 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to root_path do %>
+  <i class="glyphicon glyphicon-chevron-left"></i> Return to restaurant list
+<% end %>
+

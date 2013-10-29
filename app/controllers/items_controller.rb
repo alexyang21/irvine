@@ -138,12 +138,17 @@ class ItemsController < ApplicationController
     end
 
     def check_item_from_same_restaurant
-      # menu = Menu.find(params[:menu_id])
+      menu = Menu.find(params[:menu_id])
 
-      # @cart.items.each do |item|
-      #   if item.menu.restaurant != menu.restaurant
-      #     item.destroy
-      #   end
-      # end
+      if @cart.items.count > 0
+        if menu.restaurant.name != @cart.items.first.menu.restaurant.name
+          # Empty current cart
+          @cart.destroy
+
+          # Create a new cart
+          @cart = Cart.create
+          session[:cart_id] = @cart.id
+        end
+      end
     end
 end

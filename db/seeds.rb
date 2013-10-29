@@ -9,19 +9,39 @@
 Restaurant.delete_all
 Restaurant.create!( name:         "California Fish Grill",
                     description:  "Seafood",
-                    image_url:    "cfg.jpg")
+                    image_url:    "cfg.jpg",
+                    address:      "3988 Barranca Pkwy",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9496543838")
 Restaurant.create!( name:         "Fukada",
                     description:  "Japanese",
-                    image_url:    "fukada.jpg")
+                    image_url:    "fukada.jpg",
+                    address:      "8683 Irvine Center Dr",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9493410111")
 Restaurant.create!( name:         "Mick's Karma Bar",
                     description:  "Burgers",
-                    image_url:    "micks.jpg")
+                    image_url:    "micks.jpg",
+                    address:      "2010 Main St",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9498516316")
 Restaurant.create!( name:         "Kula Revolving Sushi Bar",
                     description:  "Japanese Sushi Bar",
-                    image_url:    "kula.jpg")
+                    image_url:    "kula.jpg",
+                    address:      "2700 Alton Pkwy",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9495530747")
 Restaurant.create!( name:         "Le Diplomate Cafe",
                     description:  "Sandwiches",
-                    image_url:    "diplomate.gif")
+                    image_url:    "diplomate.gif",
+                    address:      "4237 Campus Dr",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9498545161")
 
 Menu.delete_all
 Menu.create!( restaurant_id: 1,
@@ -105,3 +125,11 @@ Menu.create!( restaurant_id: 5,
               description:
                 "Chicken breast, dijon, garlic sauce & artichoke",
               price: 2.99)
+
+User.delete_all
+User.create!( name:     "First User",
+              email:    "first@example.com",
+              password: "Thanksgiving")
+User.create!( name:     "Second User",
+              email:    "second@example.com",
+              password: "Thanksgiving")

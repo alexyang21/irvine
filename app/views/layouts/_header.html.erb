@@ -14,9 +14,13 @@
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "About", '#' %></li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
 
       <% if user_signed_in? %>
+        <li><%= link_to "Order history", orders_path %></li>
         <li><%= link_to "Edit profile",
             edit_user_registration_path %></li>
         <li><%= link_to "Log out", destroy_user_session_path,
@@ -25,7 +29,6 @@
         <li><%= link_to "Sign up", new_user_registration_path %></li>
         <li><%= link_to "Sign in", new_user_session_path %></li>
       <% end %>
-      <li><%= link_to "About", '#' %></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
