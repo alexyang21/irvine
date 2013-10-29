@@ -1,14 +1,12 @@
 <h1>Listing orders</h1>
 
-<table>
+<table class="table table-responsive">
   <thead>
     <tr>
+      <th>Time of Order</th>
+      <th>Restaurant</th>
+      <th>Order Size</th>
       <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,12 +16,14 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
+        <td>
+          <%= order.updated_at.
+              in_time_zone("Pacific Time (US & Canada)").
+              strftime('%m/%d/%Y %l:%M %P') %>
+        </td>
+        <td><%= order.items.first.menu.restaurant.name %></td>
+        <td><%= number_to_currency(order.total_price) %></td>
         <td><%= order.name %></td>
-        <td><%= order.email %></td>
-        <td><%= order.phone %></td>
-        <td><%= order.address %></td>
-        <td><%= order.city %></td>
-        <td><%= order.state %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

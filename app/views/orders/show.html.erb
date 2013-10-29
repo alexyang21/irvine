@@ -1,34 +1,88 @@
-<p id="notice"><%= notice %></p>
-
+<legend>Customer Information</legend>
 <p>
   <strong>Name:</strong>
   <%= @order.name %>
-</p>
-
-<p>
+  <br>
   <strong>Email:</strong>
   <%= @order.email %>
-</p>
-
-<p>
+  <br>
   <strong>Phone:</strong>
   <%= @order.phone %>
 </p>
 
+<br>
+
+<legend>Delivery Address</legend>
 <p>
-  <strong>Address:</strong>
-  <%= @order.address %>
+  <strong>
+  <%= @order.address %><br>
+  <%= @order.city %>, <%= @order.state %>
+  </strong>
 </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @order.city %>
-</p>
+<br>
+
+<legend>Order Details</legend>
 
 <p>
-  <strong>State:</strong>
-  <%= @order.state %>
+  Order placed <%= time_ago_in_words(@order.updated_at) %> ago
+  <br>
+  Order placed on:
+  <%= @order.updated_at.in_time_zone("Pacific Time (US & Canada)").
+      strftime('%m/%d/%Y %l:%M %P') %>
 </p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4><%= @order.items.first.menu.restaurant.name %></h4>
+  </div>
+
+  <table class="table table-responsive">
+    <colgroup>
+      <col class="col-lg-2"></col>
+      <col class="col-lg-1"></col>
+      <col class="col-lg-1"></col>
+      <col class="col-lg-1"></col>
+    </colgroup>
+
+    <thead class="bold">
+      <tr>
+        <th>Item</th>
+        <th class="center">Price</th>
+        <th class="center">Quantity</th>
+        <th class="center">Subtotal</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @order.items.each do |item| %>
+        <tr>
+          <td><%= item.menu.name %></td>
+          <td class="center">
+            <%= number_to_currency(item.menu.price) %>
+          </td>
+          <td class="center">
+            <%= item.quantity %>
+          </td>
+          <td class="center">
+            <%= number_to_currency(item.total_price) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    <tfoot>
+      <tr class="total_line bold">
+        <td class="total_cell">TOTAL</td>
+        <td class="total_cell"></td>
+        <td class="total_cell"></td>
+        <td class="total_cell center">
+          <%= number_to_currency(@order.total_price) %>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
