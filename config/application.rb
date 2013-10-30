@@ -22,5 +22,8 @@ module FlipOrder
 
     # Required for Heroku
     config.assets.initialize_on_precompile = false
+
+    # Prevents passwords from being written to our log file
+    config.filter_parameters += [:password, :password_confirmation]
   end
 end
