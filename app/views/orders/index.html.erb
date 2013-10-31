@@ -6,8 +6,11 @@
       <th class="center">Order Size</th>
       <th class="center">Name</th>
       <th></th>
-      <th></th>
-      <th></th>
+
+      <% if current_user.admin %>
+        <th></th>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -22,9 +25,26 @@
         <td class="center"><%= order.items.first.menu.restaurant.name %></td>
         <td class="center"><%= number_to_currency(order.total_price) %></td>
         <td class="center"><%= order.name %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to order do %>
+            <i class="glyphicon glyphicon-zoom-in"></i> Details
+          <% end %>
+        </td>
+
+        <!-- If Admin, show 'Edit' and 'Destroy' buttons-->
+        <% if current_user.admin %>
+          <td>
+            <%= link_to edit_order_path(order) do %>
+              <i class="glyphicon glyphicon-edit"></i> Edit
+            <% end %>
+          </td>
+          <td>
+            <%= link_to order, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="glyphicon glyphicon-trash"></i> Delete
+            <% end %>
+          </td>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>

@@ -1,4 +1,9 @@
 class CartsController < ApplicationController
+  before_action except: [:destroy] do
+    require_login "You need to be logged in (and be an Admin) to see that"
+  end
+  before_action :require_admin, except: [:destroy]
+
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 

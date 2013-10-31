@@ -1,5 +1,10 @@
 class MenusController < ApplicationController
-  before_filter :get_restaurant
+  before_action do
+    require_login "You need to be logged in (and be an Admin) to see that"
+  end
+  before_action :require_admin
+
+  before_action :get_restaurant
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   # GET /menus
@@ -72,6 +77,9 @@ class MenusController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
       @menu = @restaurant.menus.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to(root_url)
+      flash[:info] = "Sorry, couldn't find the menu item you were looking for"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

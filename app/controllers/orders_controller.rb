@@ -1,24 +1,35 @@
 class OrdersController < ApplicationController
   include CurrentCart
-  before_action :require_login
-  # before_action :authenticate_user, only: [:show]
-  before_action :set_cart, only: [:new, :create]
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :check_cart_empty, only: [:new]
+
+  before_action only: [:new] do
+    require_login "You need to be logged in to place an order"
+  end
+  before_action only: [:index, :show] do
+    require_login "You need to be logged in to view orders"
+  end
+  before_action except: [:new, :index, :show] do
+    require_login "You need to be logged in to see that"
+  end
+
+  before_action :set_cart,          only: [:new, :create]
+  before_action :set_order,         only: [:show, :edit, :update, :destroy]
+  before_action :check_user,        only: [:show, :edit, :update, :destroy]
+  before_action :check_cart_empty,  only: [:new]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = current_user.orders.order("updated_at DESC")
+    # Admin users see all orders; non-Admins only see their own orders
+    if current_user.admin
+      @orders = Order.order("updated_at DESC")
+    else
+      @orders = current_user.orders.order("updated_at DESC")
+    end
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
-    if current_user.id != @order.user_id
-      redirect_to(orders_url)
-      flash[:warning] = "You can only view orders placed from your account"
-    end
   end
 
   # GET /orders/new
@@ -33,7 +44,6 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-
 
     # Remember to change this to your live secret key in production
     # Stripe.api_key = "sk_test_exK7Z2ID3F0IP0bTCmuXy4zo"
@@ -52,17 +62,17 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
 
         # Create the charge on Stripe's servers - this will charge the user's card
-        begin
-          charge = Stripe::Charge.create(
-            :amount => (100 * @order.total_price).to_i,
-            :currency => "usd",
-            :card => token,
-            :description => "payinguser@example.com"
-          )
-          flash[:success] = "Thanks for ordering!"
-        rescue Stripe::CardError => e
-          flash[:danger] = e.message
-        end
+        # begin
+        #   charge = Stripe::Charge.create(
+        #     :amount => (100 * @order.total_price).to_i,
+        #     :currency => "usd",
+        #     :card => token,
+        #     :description => "payinguser@example.com"
+        #   )
+        #   flash[:success] = "Thanks for ordering!"
+        # rescue Stripe::CardError => e
+        #   flash[:danger] = e.message
+        # end
 
         format.html { redirect_to(root_url) }
         format.json { render action: 'show', status: :created, location: @order }
@@ -101,6 +111,9 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to(orders_url)
+      flash[:info] = "Sorry, couldn't find the order you were looking for"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -108,17 +121,19 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:name, :email, :phone, :address, :city, :state)
     end
 
-    def require_login
-      unless user_signed_in?
-        flash[:info] = "You need to sign in to place an order"
-        redirect_to(new_user_session_url)
-      end
-    end
-
     def check_cart_empty
       if @cart.items.empty?
         redirect_to(root_url)
         flash[:info] = "Your cart is empty"
+      end
+    end
+
+    def check_user
+      if !current_user.admin
+        if current_user.id != @order.user_id
+          redirect_to(orders_url)
+          flash[:warning] = "You can only view orders placed from your account"
+        end
       end
     end
 end

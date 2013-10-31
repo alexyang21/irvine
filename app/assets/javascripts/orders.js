@@ -19,6 +19,7 @@ var stripeResponseHandler = function(status, response) {
 };
 
 jQuery(function($) {
+
   $('#order-form').submit(function(event) {
     var $form = $(this);
 

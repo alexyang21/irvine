@@ -135,4 +135,5 @@ User.create!( name:     "Second User",
               password: "FirstDollar")
 User.create!( name:     "Admin User",
               email:    "admin@example.com",
-              password: "FirstDollar")
+              password: "FirstDollar",
+              admin:    true)

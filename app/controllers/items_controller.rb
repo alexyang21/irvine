@@ -1,5 +1,11 @@
 class ItemsController < ApplicationController
   include CurrentCart
+
+  before_action except: [:create, :destroy] do
+    require_login "You need to be logged in (and be an Admin) to see that"
+  end
+  before_action :require_admin, except: [:create, :destroy]
+
   before_action :set_cart, only: [:create, :destroy, :decrease, :increase]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :check_item_from_same_restaurant, only: [:create]
@@ -28,21 +34,10 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     menu = Menu.find(params[:menu_id])
-    # logger.info "Before entering loop, #{@cart.items.count} items in cart"
-
-    # if @cart.items.count > 0
-    #   logger.info "Before adding item, cart item quantity is #{@cart.items.first.quantity}"
-    # end
-
     @item = @cart.add_menu(menu.id)
-
-    # logger.info "After adding item, item quantity is now #{@item.quantity}"
-    # logger.info "After adding item, cart item quantity is #{@cart.items.first.quantity}"
 
     respond_to do |format|
       if @item.save
-        # logger.info "After saving, item quantity is now #{@item.quantity}"
-        # logger.info "After saving, cart item quantity is #{@cart.items.first.quantity}"
         format.html {
           redirect_to store_url(menu.restaurant.name)
           flash[:success] = "Item added to cart" }
@@ -130,6 +125,9 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to(root_url)
+      flash[:info] = "Sorry, couldn't find the item you were looking for"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -142,6 +140,7 @@ class ItemsController < ApplicationController
 
       if @cart.items.count > 0
         if menu.restaurant.name != @cart.items.first.menu.restaurant.name
+
           # Empty current cart
           @cart.destroy
 

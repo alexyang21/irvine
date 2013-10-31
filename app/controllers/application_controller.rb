@@ -12,4 +12,18 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
   end
+
+  def require_login(msg)
+    unless user_signed_in?
+      flash[:info] = msg
+      redirect_to(new_user_session_url)
+    end
+  end
+
+  def require_admin
+    unless current_user.admin
+      flash[:info] = "Sorry, only admins have access to that page"
+      redirect_to(root_url)
+    end
+  end
 end

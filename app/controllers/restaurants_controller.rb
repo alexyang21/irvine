@@ -1,4 +1,10 @@
 class RestaurantsController < ApplicationController
+  before_action do
+    require_login("You need to be logged in (and be an Admin) to see that")
+  end
+  before_action :require_admin
+
+  before_action :check_admin, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   # GET /restaurants
@@ -71,10 +77,20 @@ class RestaurantsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to(root_url)
+      flash[:info] = "Sorry, couldn't find the restaurant you were looking for"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
       params.require(:restaurant).permit(:name, :description, :image_url)
+    end
+
+    def check_admin
+      if !current_user.admin
+        redirect_to(root_url)
+        flash[:warning] = "Only admin are allowed to modify restaurants"
+      end
     end
 end
