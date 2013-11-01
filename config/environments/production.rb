@@ -80,5 +80,15 @@ FlipOrder::Application.configure do
 
   # Required for Heroku
   # Note to set this to your actual host
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'fliporder.com' }
+
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.mandrill.com",
+    :port                 => 587,
+    :domain               => "fliporder.com",
+    :user_name            => ENV["MANDRILL_USER_NAME"],
+    :password             => ENV["MANDRILL_PASSWORD"],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 end

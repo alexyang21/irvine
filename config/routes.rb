@@ -1,5 +1,7 @@
 FlipOrder::Application.routes.draw do
 
+  get "pages/about"
+  get "pages/vendor"
   resources :orders
 
   devise_for :users
@@ -17,6 +19,8 @@ FlipOrder::Application.routes.draw do
 
   root "store#index"
 
+  get '/about', to: 'pages#about'
+  get '/vendor', to: 'pages#vendor'
   get '/:restaurant_name', to: 'store#show', as: 'store'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,4 +1,4 @@
-Stripe.setPublishableKey('pk_test_Votg7aKqsCGeEXnhIA2DgT5e');
+Stripe.setPublishableKey(ENV["STRIPE_PUBLIC_KEY"]);
 
 var stripeResponseHandler = function(status, response) {
   var $form = $('#order-form');

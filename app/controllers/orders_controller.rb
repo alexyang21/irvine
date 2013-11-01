@@ -61,6 +61,12 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
+        # Send a notification email to Alex
+        UserMailer.email_alert(@order).deliver
+
+        # Send an email receipt to user
+        UserMailer.email_receipt(current_user, @order).deliver
+
         # Create the charge on Stripe's servers - this will charge the user's card
         # begin
         #   charge = Stripe::Charge.create(
