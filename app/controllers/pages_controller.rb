@@ -4,4 +4,7 @@ class PagesController < ApplicationController
 
   def vendor
   end
+
+  def drivers
+  end
 end
