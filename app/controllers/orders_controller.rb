@@ -37,8 +37,7 @@ class OrdersController < ApplicationController
   def create
 
     # Remember to change this to your live secret key in production
-    # Stripe.api_key = "sk_test_exK7Z2ID3F0IP0bTCmuXy4zo"
-    Stripe.api_key = ENV["STRIPE_API_KEY"]
+    Stripe.api_key = ENV["STRIPE_TEST_API_KEY"]
 
     # Get the credit card details submitted by the form
     token = params[:stripeToken]
@@ -59,17 +58,17 @@ class OrdersController < ApplicationController
         UserMailer.email_receipt(current_user, @order).deliver
 
         # Create the charge on Stripe's servers - this will charge the user's card
-        # begin
-        #   charge = Stripe::Charge.create(
-        #     :amount => (100 * @order.total_price).to_i,
-        #     :currency => "usd",
-        #     :card => token,
-        #     :description => "payinguser@example.com"
-        #   )
-        #   flash[:success] = "Thanks for ordering!"
-        # rescue Stripe::CardError => e
-        #   flash[:danger] = e.message
-        # end
+        begin
+          charge = Stripe::Charge.create(
+            :amount => (100 * @order.total_price).to_i,
+            :currency => "usd",
+            :card => token,
+            :description => "payinguser@example.com"
+          )
+          flash[:success] = "Thanks for ordering!"
+        rescue Stripe::CardError => e
+          flash[:danger] = e.message
+        end
 
         format.html { redirect_to(root_url) }
         format.json { render action: 'show', status: :created, location: @order }

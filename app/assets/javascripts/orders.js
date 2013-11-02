@@ -1,5 +1,3 @@
-Stripe.setPublishableKey(ENV["STRIPE_PUBLIC_KEY"]);
-
 var stripeResponseHandler = function(status, response) {
   var $form = $('#order-form');
 
@@ -19,8 +17,10 @@ var stripeResponseHandler = function(status, response) {
 };
 
 jQuery(function($) {
+  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
 
   $('#order-form').submit(function(event) {
+
     var $form = $(this);
 
     // Disable the submit button to prevent repeated clicks
