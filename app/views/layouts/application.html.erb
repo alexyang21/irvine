@@ -17,7 +17,6 @@
 
 <body class='<%= controller.controller_name %>'>
 
-
   <div class="wrap">
     <%= render 'layouts/header' %>
 
@@ -32,10 +31,10 @@
       <% end %>
 
       <%= yield %>
-
-      <%= render 'layouts/footer' %>
     </div>
   </div>
+
+  <%= render 'layouts/footer' %>
 
   <br>
 
