@@ -13,6 +13,8 @@ gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'devise'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
+gem 'aws-sdk', '~> 1.20.0'
+gem "paperclip", "~> 3.0"
 
 group :production do
   gem 'pg'

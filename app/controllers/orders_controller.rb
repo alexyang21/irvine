@@ -1,16 +1,6 @@
 class OrdersController < ApplicationController
   include CurrentCart
-
   before_action :authenticate_user!
-  # before_action only: [:new] do
-  #   require_login "You need to be logged in to place an order"
-  # end
-  # before_action only: [:index, :show] do
-  #   require_login "You need to be logged in to view orders"
-  # end
-  # before_action except: [:new, :index, :show] do
-  #   require_login "You need to be logged in to see that"
-  # end
 
   before_action :set_cart,          only: [:new, :create]
   before_action :set_order,         only: [:show, :edit, :update, :destroy]
