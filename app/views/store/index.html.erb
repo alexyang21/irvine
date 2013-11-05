@@ -11,16 +11,13 @@
 
             <div class="col-sm-6 col-md-3">
               <div class="thumbnail">
-
-                <%= link_to(image_tag(restaurant.image.url,
-                    class: "store_image"),
+                <%= link_to(image_tag(restaurant.image.url(:thumb)),
                     store_path(restaurant.name)) %>
 
                 <div class="caption">
                   <h4><%= restaurant.name %></h4>
                   <h5><%= restaurant.description %></h5>
                 </div>
-
               </div>
             </div>
           <% end %>

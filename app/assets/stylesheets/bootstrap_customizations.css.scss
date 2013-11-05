@@ -2,8 +2,29 @@
 
 html, body {
   height: 100%;
-  padding-bottom: 64px;
 }
+
+body {
+  border: 1px solid red;
+  background-image: url('greyzz wallpaper.png');
+}
+
+.wrapper {
+  // min-height: 100%;
+  // height: auto;
+  // margin: 0 auto -60px;
+  padding: 0 0 60px;
+  border: 1px solid blue;
+}
+
+// .footer {
+//   // position: relative;
+//   height: 60px;
+//   // clear: both;
+//   background-color: #f5f5f5;
+//   // border: 1px solid green;
+// }
+
 
 .center {
   text-align: center;
@@ -17,23 +38,6 @@ html, body {
   font-weight: bold;
 }
 
-// .wrap {
-//   min-height: 100%;
-//   height: auto !important;
-//   height: 100%;
-//   margin: 0 auto -60px;
-// }
-
-// .push .footer {
-//   height: 60px;
-// }
-
-// .footer {
-//   // padding-top: 30px;
-//   display: inline-block;
-//   float: none;
-//   text-align: center;
-// }
 .nav {
   float:none;
   display:inline-block;
