@@ -15,11 +15,12 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Restaurant Partners", vendor_path %></li>
-      <li><%= link_to "Become A Driver!", drivers_path %></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
 
+      <li><%= link_to "Vendors", vendor_path %></li>
+      <li><%= link_to "Drivers", drivers_path %></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li><%= link_to "Order history", orders_path %></li>
         <li><%= link_to "Edit profile",
@@ -27,8 +28,7 @@
         <li><%= link_to "Log out", destroy_user_session_path,
             method: :delete %></li>
       <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <li><%= link_to "Sign in", new_user_session_path %></li>
+        <li><%= link_to "My Account", new_user_session_path %></li>
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
