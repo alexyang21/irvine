@@ -13,7 +13,7 @@ cfg = Restaurant.new( name:         "California Fish Grill",
                       city:         "Irvine",
                       state:        "CA",
                       phone:        "9496543838")
-# cfg.image = File.open('/restaurants/images/')
+# cfg.image = File.open('http://s3.amazonaws.com/fliporder/restaurants/images/1/original/cfg.jpg')
 Restaurant.create!( name:         "Fukada",
                     description:  "Japanese",
                     address:      "8683 Irvine Center Dr",
