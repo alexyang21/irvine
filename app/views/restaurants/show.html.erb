@@ -1,0 +1,18 @@
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @restaurant.description %>
+</p>
+
+<%= image_tag @restaurant.image.url %>
+
+<%= link_to edit_restaurant_path(@restaurant) do %>
+  <i class="glyphicon glyphicon-edit"></i> Edit
+<% end %> |
+<%= link_to restaurants_path do %>
+  <i class="glyphicon glyphicon-chevron-left"></i> Back
+<% end %>

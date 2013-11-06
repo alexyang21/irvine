@@ -1,0 +1,16 @@
+<p>
+  <strong>Menu:</strong>
+  <%= @item.menu %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @item.cart %>
+</p>
+
+<%= link_to edit_item_path(@item) do %>
+  <i class="glyphicon glyphicon-edit"></i> Edit
+<% end %> |
+<%= link_to items_path do %>
+  <i class="glyphicon glyphicon-chevron-left"></i> Back
+<% end %>

@@ -1,0 +1,52 @@
+.carts, .side_bar {
+
+  th, td {
+    font-size: x-small;
+  }
+
+  .quantity {
+    width: auto;
+  }
+  .total_line {
+    .total_cell {
+      font-size: small;
+      border-top: 1px solid #000000;
+    }
+  }
+
+  .minus_button {
+    float: left;
+  }
+  .plus_button {
+    float: right;
+  }
+  .btn_margin {
+    margin-top: -5px;
+  }
+
+  .quantity {
+    padding: 8px 0px 8px 0px;
+  }
+}
+
+// Set table width for sidebar content when not in cart view
+.side_bar {
+  .table {
+    width: 100%;
+  }
+}
+
+.carts {
+
+  // Set table width for main content in cart view
+  .table {
+    width: 80%;
+  }
+
+  // Set table width for sidebar content in cart view
+  .side_bar {
+    .table {
+      width: 100%;
+    }
+  }
+}

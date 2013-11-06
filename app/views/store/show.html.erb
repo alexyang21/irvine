@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="center">
+      <h1><%= @restaurant.name %></h1>
+    </div>
+
+    <div class="row">
+      <% @menus.each do |menu| %>
+
+        <div class="col-md-6">
+          <div class="well well-sm">
+          <!-- <div class="box"> -->
+            <div class="menu_listing_name">
+              <h4>
+                <%= menu.name %> - <%= number_to_currency(menu.price) %>
+              </h4>
+              <p><%= menu.description %></p>
+            </div>
+            <%= link_to items_path(menu_id: menu), method: :post,
+              class: "btn btn-primary btn-sm", remote: true do %>
+                <i class="glyphicon glyphicon-plus white"></i>
+                <span class="white">Add to cart</span>
+            <% end %>
+          <!-- </div> -->
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <%= hidden_div_if(@cart.items.empty?, class: "side_bar") do %>
+      <%= render @cart %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to root_path do %>
+  <i class="glyphicon glyphicon-chevron-left"></i> Back
+<% end %>

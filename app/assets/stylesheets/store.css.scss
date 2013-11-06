@@ -1,0 +1,29 @@
+.store {
+
+  // .thumbnail .span2:nth-child(6n+1),
+  // .thumbnail .span3:nth-child(4n+1),
+  // .thumbnail .span4:nth-child(3n+1),
+  // .thumbnail .span6:nth-child(2n+1) {
+  //   margin-left: 0;
+  //   clear: left;
+  // }
+
+  // .img-thumbnail {
+  //   width: 100%;
+  //   height: auto;
+  // }
+
+  .menu_listing_name {
+    h4 {
+      margin: 0% 0% 1% 0%;
+    }
+    p {
+      margin: 0% 0% 0% 0%;
+      font-size: small;
+    }
+  }
+
+  .btn {
+    margin: 1%;
+  }
+}

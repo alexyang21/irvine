@@ -1,0 +1,29 @@
+<% if item == @current_item %>
+  <tr id="current_item">
+<% else %>
+  <tr>
+<% end %>
+    <td><%= item.menu.name %></td>
+    <td class="center">
+      <%= number_to_currency(item.menu.price) %>
+    </td>
+    <td class="center quantity">
+      <div class="pull-left">
+        <%= link_to decrease_item_path(item), method: :put, class: "btn btn-danger btn-xs btn_margin", remote: true do %>
+            <i class="glyphicon glyphicon-minus white"></i>
+        <% end %>
+
+      </div>
+
+      &times;<%= item.quantity %>
+
+      <div class="pull-right">
+        <%= link_to increase_item_path(item), method: :put, class: "btn btn-success btn-xs btn_margin", remote: true do %>
+            <i class="glyphicon glyphicon-plus white"></i>
+        <% end %>
+      </div>
+    </td>
+    <td class="center">
+      <%= number_to_currency(item.total_price) %>
+    </td>
+  </tr>

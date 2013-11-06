@@ -1,0 +1,38 @@
+<h1>Listing menus</h1>
+
+<table>
+  <% @menus.each do |menu| %>
+    <tr>
+      <td class="restaurant_info">
+        <%= @restaurant.try(:name) %>
+      </td>
+      <td class="menu_info">
+        <dl>
+          <dt>
+            <%= menu.name %> - <%= number_to_currency(menu.price) %>
+          </dt>
+          <dd><%= menu.description %></dd>
+        </dl>
+      </td>
+      <td class="menu_actions">
+        <%= link_to restaurant_menu_path(@restaurant, menu) do %>
+          <i class="glyphicon glyphicon-zoom-in"></i> Show
+        <% end %>
+        |
+        <%= link_to edit_restaurant_menu_path(@restaurant, menu) do %>
+          <i class="glyphicon glyphicon-edit"></i> Edit
+        <% end %>
+        |
+        <%= link_to [@restaurant, menu], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="glyphicon glyphicon-trash"></i> Delete
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to new_restaurant_menu_path(@restaurant) do %>
+  <i class="glyphicon glyphicon-plus"></i> Add Menu Item
+<% end %>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8'
+          http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h5><%= @order.name %>,</h5>
+    <p>
+      Thanks for using FlipOrder.com! We've already contacted
+      <%= @order.items.first.menu.restaurant.name %> and our driver will be on his way to <%= @order.address %> as soon as your order is ready. Here's what you ordered:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @order.items.each do |item| %>
+          <tr>
+            <td><%= item.menu.name %></td>
+            <td><%= number_to_currency(item.menu.price) %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.total_price) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <p>Thanks again and have a great day!</p>
+  </body>
+</html>

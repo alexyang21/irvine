@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading center">Your Cart</div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <colgroup>
+        <col class="col-md-2"></col>
+        <col class="col-md-1"></col>
+        <col class="col-md-1"></col>
+        <col class="col-md-1"></col>
+      </colgroup>
+      <thead class="bold">
+        <tr>
+          <th>Item</th>
+          <th class="center">Price</th>
+          <th class="center">Quantity</th>
+          <th class="center">Subtotal</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= render(cart.items) %>
+      </tbody>
+
+      <tfoot>
+        <tr class="total_line bold">
+          <td class="total_cell">TOTAL</td>
+          <td class="total_cell"></td>
+          <td class="total_cell"></td>
+          <td class="total_cell center">
+            <%= number_to_currency(cart.total_price) %>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+
+  <% unless current_page?(controller: 'orders', action: 'new') %>
+    <div class="row">
+      <div class="col-md-6 center">
+        <%= link_to cart, method: :delete, remote: true,
+          # data: { confirm: 'Are you sure?' },
+          class: "btn btn-danger btn-sm" do %>
+
+          <i class="glyphicon glyphicon-trash white"></i>
+          <span class="white">Empty cart</span>
+
+        <% end %>
+      </div>
+
+      <div class="col-md-6 center">
+        <%= link_to new_order_path, method: :get,
+            class: "btn btn-success btn-sm" do %>
+
+            <i class="glyphicon glyphicon-cutlery white"></i>
+            <span class="white">Checkout</span>
+
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <br>
+</div>

@@ -1,0 +1,10 @@
+<h1>Editing cart</h1>
+
+<%= render 'form' %>
+
+<%= link_to @cart do %>
+  <i class="glyphicon glyphicon-zoom-in"></i> Show
+<% end %> |
+<%= link_to carts_path do %>
+  <i class="glyphicon glyphicon-chevron-left"></i> Back
+<% end %>
