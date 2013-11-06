@@ -4,29 +4,32 @@
       <h1><%= @restaurant.name %></h1>
     </div>
 
-    <div class="row">
-      <% @menus.each do |menu| %>
+    <ul class="nav nav-tabs nav-justified">
+      <li class="active"><%= link_to "Option A", '#appetizers',
+                          id: "option-a", :'data-toggle' => "tab" %></li>
+      <li><%= link_to "Option B", '#entrees',
+                          id: "option-b", :'data-toggle' => "tab" %></li>
+      <li><%= link_to "Option C", '#desserts',
+                          id: "option-c", :'data-toggle' => "tab" %></li>
+    </ul>
 
-        <div class="col-md-6">
-          <div class="well well-sm">
-          <!-- <div class="box"> -->
-            <div class="menu_listing_name">
-              <h4>
-                <%= menu.name %> - <%= number_to_currency(menu.price) %>
-              </h4>
-              <p><%= menu.description %></p>
-            </div>
-            <%= link_to items_path(menu_id: menu), method: :post,
-              class: "btn btn-primary btn-sm", remote: true do %>
-                <i class="glyphicon glyphicon-plus white"></i>
-                <span class="white">Add to cart</span>
-            <% end %>
-          <!-- </div> -->
-          </div>
-        </div>
-
-      <% end %>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in active" id="appetizers">
+        <p>This is the content for Option A</p>
+      </div>
+      <div class="tab-pane fade" id="entrees">
+        <p>This is the content for Option B</p>
+      </div>
+      <div class="tab-pane fade" id="desserts">
+        <p>This is the content for Option C</p>
+      </div>
     </div>
+
+    <% if false %>
+    <div class="row">
+      <%= render 'store/listing' %>
+    </div>
+    <% end %>
   </div>
 
   <div class="col-md-3">
