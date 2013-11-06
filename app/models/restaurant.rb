@@ -3,7 +3,7 @@ class Restaurant < ActiveRecord::Base
   has_attached_file :image,
       :styles         => { :medium => "300x300>", :thumb => "100x100>" },
       :storage        => :s3,
-      :path           => "/:class/:image/:id/:style/:basename.:extension",
+      :path           => "/:class/:attachment/:id/:style/:basename.:extension",
       :s3_credentials => {
           bucket: ENV["AWS_BUCKET"],
           access_key_id: ENV["AWS_ACCESS_KEY_ID"],
