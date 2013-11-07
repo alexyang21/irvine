@@ -7,38 +7,41 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Restaurant.delete_all
-cfg = Restaurant.new( name:         "California Fish Grill",
-                      description:  "Seafood",
-                      address:      "3988 Barranca Pkwy",
-                      city:         "Irvine",
-                      state:        "CA",
-                      phone:        "9496543838")
-# cfg.image = File.open('/restaurants/images/1/original/cfg.jpg')
-# cfg.save!
+Restaurant.create!( name:         "California Fish Grill",
+                    description:  "Seafood",
+                    address:      "3988 Barranca Pkwy",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9496543838",
+                    image:        open('https://s3.amazonaws.com/fliporder/restaurants/images/1/original/cfg.jpg') )
 Restaurant.create!( name:         "Fukada",
                     description:  "Japanese",
                     address:      "8683 Irvine Center Dr",
                     city:         "Irvine",
                     state:        "CA",
-                    phone:        "9493410111")
+                    phone:        "9493410111",
+                    image:        open('https://s3.amazonaws.com/fliporder/restaurants/images/2/original/fukada.jpg') )
 Restaurant.create!( name:         "Mick's Karma Bar",
                     description:  "Burgers",
                     address:      "2010 Main St",
                     city:         "Irvine",
                     state:        "CA",
-                    phone:        "9498516316")
+                    phone:        "9498516316",
+                    image:        open('https://s3.amazonaws.com/fliporder/restaurants/images/3/original/micks.jpg') )
 Restaurant.create!( name:         "Kula Revolving Sushi Bar",
                     description:  "Japanese Sushi Bar",
                     address:      "2700 Alton Pkwy",
                     city:         "Irvine",
                     state:        "CA",
-                    phone:        "9495530747")
+                    phone:        "9495530747",
+                    image:        open('https://s3.amazonaws.com/fliporder/restaurants/images/4/original/kula.jpg') )
 Restaurant.create!( name:         "Le Diplomate Cafe",
                     description:  "Sandwiches",
                     address:      "4237 Campus Dr",
                     city:         "Irvine",
                     state:        "CA",
-                    phone:        "9498545161")
+                    phone:        "9498545161",
+                    image:        open('https://s3.amazonaws.com/fliporder/restaurants/images/5/original/diplomate.gif') )
 
 Menu.delete_all
 Menu.create!( restaurant_id: 1,
