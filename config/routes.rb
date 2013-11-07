@@ -22,6 +22,7 @@ FlipOrder::Application.routes.draw do
   get '/about', to: 'pages#about'
   get '/vendor', to: 'pages#vendor'
   get '/drivers', to: 'pages#drivers'
+  get '/contact', to: 'pages#contact'
   get '/:restaurant_name', to: 'store#show', as: 'store'
 
   # The priority is based upon order of creation: first created -> highest priority.

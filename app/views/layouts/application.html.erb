@@ -15,10 +15,9 @@
 
 <body class='<%= controller.controller_name %>'>
 
-  <div class="wrapper">
+ <div class="wrapper">
 
     <%= render 'layouts/header' %>
-
 
     <div class="container">
       <!-- Display flash messages -->
@@ -30,17 +29,19 @@
         <% end %>
       <% end %>
 
+    <div class="footer"
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
-  </div>
+    
+</div>
+</div>
 
+ <!-- <div class="footer">
 
-  <!-- <div class="footer"> -->
+  </div>  -->
 
-  <!-- </div> -->
-
-  <br>
+<!--   <br> -->
 
 </body>
 </html>

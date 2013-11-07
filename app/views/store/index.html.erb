@@ -7,10 +7,13 @@
 </div>
 
 <div class="row">
-  <div class="col-md-9 center">
+  <div class="col-md-12 center">
+
+    <% if false %>
     <h1>
       Choose from <%= pluralize(@restaurants.count, 'restaurant') %>
     </h1>
+    <% end %>
 
     <div class="row">
       <% cache ['store', Restaurant.latest] do %>
@@ -34,9 +37,12 @@
     </div>
   </div>
 
+  <% if false %>
   <div class="col-md-3">
     <%= hidden_div_if(@cart.items.empty?, class: "side_bar") do %>
       <%= render @cart %>
     <% end %>
   </div>
+  <% end %>
 </div>
+
