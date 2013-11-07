@@ -37,6 +37,30 @@ Restaurant.create!( name:         "Le Diplomate Cafe",
                     city:         "Irvine",
                     state:        "CA",
                     phone:        "9498545161")
+Restaurant.create!( name:         "Tokyo Table",
+                    description:  "Sushi",
+                    address:      "2710 Alton Pkwy",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9492630000")
+Restaurant.create!( name:         "Lazy Dog Restaurant & Bar",
+                    description:  "Classic American",
+                    address:      "13290 Jamboree Rd",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "7147319700")
+Restaurant.create!( name:         "Taco Rosa",
+                    description:  "Mexican Tacos",
+                    address:      "13792 Jamboree Rd",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "7145056080")
+Restaurant.create!( name:         "Pho Ba Co",
+                    description:  "Vietnamese noodles",
+                    address:      "4250 Barranca Pkwy Ste K",
+                    city:         "Irvine",
+                    state:        "CA",
+                    phone:        "9498578808")
 
 Menu.delete_all
 Menu.create!( restaurant_id: 1,
@@ -120,6 +144,8 @@ Menu.create!( restaurant_id: 5,
               description:
                 "Chicken breast, dijon, garlic sauce & artichoke",
               price: 2.99)
+
+
 
 User.delete_all
 User.create!( name:     "First User",

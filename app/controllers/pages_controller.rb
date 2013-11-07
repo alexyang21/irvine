@@ -7,4 +7,7 @@ class PagesController < ApplicationController
 
   def drivers
   end
+
+  def contact
+  end
 end
