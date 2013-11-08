@@ -40,7 +40,8 @@ Restaurant.create!( name:         "Le Diplomate Cafe",
                     address:      "4237 Campus Dr",
                     city:         "Irvine",
                     state:        "CA",
-                    phone:        "9498545161")
+                    phone:        "9498545161",
+                    image:        open('https://s3.amazonaws.com/fliporder/restaurants/images/5/original/diplomate.gif') )
 Restaurant.create!( name:         "Tokyo Table",
                     description:  "Sushi",
                     address:      "2710 Alton Pkwy",
