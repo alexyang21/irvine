@@ -1,0 +1,15 @@
+<div class="col-md-6">
+  <div class="well well-sm">
+    <div class="menu_listing_name">
+      <h4>
+        <%= @menu.name %> - <%= number_to_currency(@menu.price) %>
+      </h4>
+      <p><%= @menu.description %></p>
+    </div>
+    <%= link_to items_path(menu_id: @menu), method: :post,
+      class: "btn btn-primary btn-sm", remote: true do %>
+        <i class="glyphicon glyphicon-plus white"></i>
+        <span class="white">Add to cart</span>
+    <% end %>
+  </div>
+</div>

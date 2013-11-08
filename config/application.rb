@@ -25,5 +25,6 @@ module FlipOrder
 
     # Prevents passwords from being written to our log file
     config.filter_parameters += [:password, :password_confirmation]
+
   end
 end
