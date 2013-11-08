@@ -5,88 +5,39 @@
     </div>
 
     <ul class="nav nav-tabs nav-justified">
-      <li class="active"><%= link_to "Appetizers", '#appetizers',
-                          id: "option-a", :'data-toggle' => "tab" %></li>
-      <li><%= link_to "Entrees", '#entrees',
-                          id: "option-b", :'data-toggle' => "tab" %></li>
-      <li><%= link_to "Desserts", '#desserts',
-                          id: "option-c", :'data-toggle' => "tab" %></li>
+      <% categories = @menus.to_a.map { |m| m.category }.uniq %>
+
+      <% categories.each_with_index do |category, index| %>
+
+        <% if index == 0 %>
+          <li class="active">
+        <% else %>
+          <li>
+        <% end %>
+
+        <%= link_to "#{category}", "\##{category}",
+            :'data-toggle' => "tab" %>
+
+        </li>
+      <% end %>
     </ul>
 
-    <div id="myTabContent" class="tab-content">
-      <div class="tab-pane fade in active" id="appetizers">
+    <div class="tab-content">
+      <% categories.each_with_index do |category, index| %>
 
-        <% appetizers = @menus.select { |menu| menu.category == "Appetizers" } %>
-
-        <% appetizers.each do |appetizer| %>
-          <div class="col-md-6">
-            <div class="well well-sm">
-              <div class="menu_listing_name">
-                <h4>
-                  <%= appetizer.name %> - <%= number_to_currency(appetizer.price) %>
-                </h4>
-                <p><%= appetizer.description %></p>
-              </div>
-              <%= link_to items_path(menu_id: appetizer), method: :post,
-                class: "btn btn-primary btn-sm", remote: true do %>
-                  <i class="glyphicon glyphicon-plus white"></i>
-                  <span class="white">Add to cart</span>
-              <% end %>
-            </div>
-          </div>
+        <% if index == 0 %>
+          <div class="tab-pane fade in active" id="<%= category %>">
+        <% else %>
+          <div class="tab-pane fade" id="<%= category %>">
         <% end %>
-      </div>
-      <div class="tab-pane fade" id="entrees">
 
-        <% appetizers = @menus.select { |menu| menu.category == "Entrees" } %>
+          <% tab_menus = @menus.select { |menu|
+              menu.category == category } %>
+          <%= render 'store/listing', :menus => tab_menus %>
 
-        <% appetizers.each do |appetizer| %>
-          <div class="col-md-6">
-            <div class="well well-sm">
-              <div class="menu_listing_name">
-                <h4>
-                  <%= appetizer.name %> - <%= number_to_currency(appetizer.price) %>
-                </h4>
-                <p><%= appetizer.description %></p>
-              </div>
-              <%= link_to items_path(menu_id: appetizer), method: :post,
-                class: "btn btn-primary btn-sm", remote: true do %>
-                  <i class="glyphicon glyphicon-plus white"></i>
-                  <span class="white">Add to cart</span>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="tab-pane fade" id="desserts">
-
-        <% appetizers = @menus.select { |menu| menu.category == "Desserts" } %>
-
-        <% appetizers.each do |appetizer| %>
-          <div class="col-md-6">
-            <div class="well well-sm">
-              <div class="menu_listing_name">
-                <h4>
-                  <%= appetizer.name %> - <%= number_to_currency(appetizer.price) %>
-                </h4>
-                <p><%= appetizer.description %></p>
-              </div>
-              <%= link_to items_path(menu_id: appetizer), method: :post,
-                class: "btn btn-primary btn-sm", remote: true do %>
-                  <i class="glyphicon glyphicon-plus white"></i>
-                  <span class="white">Add to cart</span>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-
-    <% if false %>
-    <div class="row">
-      <%= render 'store/listing' %>
-    </div>
-    <% end %>
   </div>
 
   <div class="col-md-3">
