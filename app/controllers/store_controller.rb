@@ -5,7 +5,7 @@ class StoreController < ApplicationController
   before_action :check_restaurant, only: [:show]
 
   def index
-    @restaurants = Restaurant.order("name ASC")
+    @restaurants = Restaurant.all
   end
 
   def show
