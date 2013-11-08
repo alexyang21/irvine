@@ -72,13 +72,12 @@ Restaurant.create!( name:         "Mick's Karma Bar",
                     phone:        "9498516316",
                     image:        open('https://s3.amazonaws.com/fliporder/restaurants/images/3/original/micks.jpg') )
 Menu.create!( restaurant_id: 3,
-              name:  "Asian Shrimp",
+              name:  "The Burger Combo",
               description:
-                "Mixed greens, sprouts, cilantro, sesame seeds,
-                cherry tomatoes, almonds, fried wontons, red onions,
-                green onions, & asian dressing",
-              price: 8.49,
-              category: "Seafood")
+                "Build the burger combo. Select your burger, fries,
+                and a drink.",
+              price: 9.25,
+              category: "Burgers")
 Menu.create!( restaurant_id: 3,
               name:  "The Karma Burger",
               description:
@@ -115,7 +114,117 @@ Menu.create!( restaurant_id: 3,
                 "Caramelized onions, Gruyere Cheese, with lettuce,
                 tomato mayo, ground mustard on Bun No 19.",
               price: 6.50,
-              category: "Onions")
+              category: "Burgers")
+Menu.create!( restaurant_id: 3,
+              name:  "The Roaring Forties",
+              description:
+                "Blue cheese, portobello mushrooms, horseradish sauce
+                with lettuce and tomato",
+              price: 6.75,
+              category: "Burgers")
+Menu.create!( restaurant_id: 3,
+              name:  "The Chunky Fries",
+              description:
+                "A large portion of our fries, served with
+                your choice of sauce",
+              price: 3.50,
+              category: "Sides")
+Menu.create!( restaurant_id: 3,
+              name:  "Hummus",
+              description:
+                "Jalapeno and cilantro hummus served with
+                fresh pita",
+              price: 5.95,
+              category: "Sides")
+Menu.create!( restaurant_id: 3,
+              name:  "The Ultimate Fish Taco",
+              description:
+                "Whole wild caught Mahi Mahi steak, grilled and served
+                atop cabbage with baja sauce, topped with Mick's
+                Pico de Gallo, fresh onions & cilantro",
+              price: 7.95,
+              category: "Entrees")
+Menu.create!( restaurant_id: 3,
+              name:  "Meagans Greek Wrap",
+              description:
+                "Fresh grilled chicken breast with romaine, tomato &
+                jalapeno & cilantro hummus of the day, topped with red
+                onions, feta & cilantro.
+                Mrs. Micks Special Wrap, available also veggie",
+              price: 7.95,
+              category: "Entrees")
+Menu.create!( restaurant_id: 3,
+              name:  "The Thai Wrap",
+              description:
+                "Grilled chicken breast, brown rice, satay and
+                chili sauce, spinach, beansprouts, and julliene carrots.",
+              price: 7.95,
+              category: "Entrees")
+Menu.create!( restaurant_id: 3,
+              name:  "24oz Strawberry Basil Lemonade",
+              description:
+                "Whole strawberries crushed with fresh basil
+                topped with our homemade lemonade",
+              price: 3.25,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "24oz Mojito Iced Tea",
+              description:
+                "Fresh lime juice mashed with fresh mint leaves and
+                brown sugar, topped with our blood orange sencha
+                green tea",
+              price: 3.25,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "24oz Purple Palmer",
+              description:
+                "Pomegranate juice and hibiscus/cranberry iced tea
+                topped with our fresh lemonade",
+              price: 3.25,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "24oz Fresh Lemonade",
+              description:
+                "Our homemade fresh lemonade made in-store daily",
+              price: 2.95,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "24oz Classic Arnold Palmer",
+              description:
+                "Choice of tea topped with our daily made fresh lemonade",
+              price: 2.95,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "500ml Mexi Coke",
+              description:
+                "",
+              price: 2.95,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "24oz Iced Tea",
+              description:
+                "Premium tropical iced tea or our blood orange sencha
+                iced tea",
+              price: 2.50,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "Can of Diet Coke",
+              description:
+                "",
+              price: 1.35,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "Can of Coke",
+              description:
+                "",
+              price: 1.35,
+              category: "Drinks")
+Menu.create!( restaurant_id: 3,
+              name:  "Can of 7 UP",
+              description:
+                "",
+              price: 1.35,
+              category: "Drinks")
 
 # Kula Revolving Sushi Bar
 Restaurant.create!( name:         "Kula Revolving Sushi Bar",
