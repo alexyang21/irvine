@@ -8,10 +8,6 @@
   //   clear: left;
   // }
 
-  // .img-thumbnail {
-  //   width: 100%;
-  //   height: auto;
-  // }
 
   .menu_listing_name {
     h4 {
@@ -21,6 +17,15 @@
       margin: 0% 0% 0% 0%;
       font-size: small;
     }
+  }
+
+  .menu_listing_name span {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
   }
 
   .btn {
