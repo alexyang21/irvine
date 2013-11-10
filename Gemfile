@@ -14,10 +14,10 @@ gem 'devise'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'aws-sdk', '~> 1.20.0'
-gem "paperclip", "~> 3.0"
+gem 'paperclip', "~> 3.0"
 
 group :production do
-  gem 'pg'
+	gem 'pg'
   gem 'rails_12factor'
 end
 
