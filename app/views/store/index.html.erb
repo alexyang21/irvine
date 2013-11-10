@@ -18,6 +18,7 @@
               <div class="thumbnail">
                 <%= link_to(image_tag(restaurant.image.url(:thumb)),
                     store_path(restaurant.name)) %>
+                <%= restaurant.image.url %>
 
                 <div class="caption">
                   <h4><%= restaurant.name %></h4>
