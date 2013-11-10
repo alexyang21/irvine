@@ -15,14 +15,10 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'aws-sdk', '~> 1.20.0'
 gem 'paperclip', "~> 3.0"
+gem 'pg'
 
 group :production do
-	gem 'pg'
   gem 'rails_12factor'
-end
-
-group :development, :test do
-  gem 'sqlite3'
 end
 
 group :doc do
