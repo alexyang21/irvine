@@ -4,6 +4,9 @@
       <h1><%= @restaurant.name %></h1>
     </div>
 
+    <% logger.info "Restaurant name is #{@restaurant.name}" %>
+    <% logger.info "#{@restaurant.name} has #{@menus.count} items" %>
+
     <ul class="nav nav-tabs nav-justified">
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
       <% categories = categories.reverse %>
