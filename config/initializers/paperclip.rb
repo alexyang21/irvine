@@ -4,6 +4,6 @@ Paperclip::Attachment.default_options[:s3_credentials]  = {
                                                             :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
                                                           }
 Paperclip::Attachment.default_options[:bucket]          = ENV['AWS_BUCKET']
-Paperclip::Attachment.default_options[:url]             = ":s3_path_url"
-Paperclip::Attachment.default_options[:path]            = "/:class/:attachment/:id/:style/:filename"
-Paperclip::Attachment.default_options[:default_url]     = "http://s3.amazonaws.com/fliporder/images/missing.png"
+# Paperclip::Attachment.default_options[:url]             = ":s3_path_url"
+Paperclip::Attachment.default_options[:path]            = "/:class/:attachment/:id/:style/:basename.:extension"
+Paperclip::Attachment.default_options[:default_url]     = "https://s3.amazonaws.com/fliporder/images/missing.png"
