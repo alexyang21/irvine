@@ -53,21 +53,21 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
 
         # Send email through Mandrill
-        m = Mandrill::API.new ENV["MANDRILL_APIKEY"]
+        mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"]
 
         message = {
           :subject    => "Hello from the Mandrill API",
           :from_name  => "Alex",
           :text       => "Hi message, how are you?",
           :to         => [{
-            :email    => "susie.ye19@gmail.com",
-            :name     => "Susie Ye"
+            :email    => "alexyang.personal@gmail.com",
+            :name     => "Alex Yang"
           }],
           :html       =>"<html><h1>Hi <strong>message</strong>, how are you?</h1></html>",
           :from_email =>"alex@fliporder.com"
         }
-        sending = m.messages.send message
-        logger.info "#{sending.inspect}"
+        result = mandrill.messages.send message
+        logger.info "#{result.inspect}"
 
         # # Send a notification email to Alex
         # UserMailer.email_alert(@order).deliver
