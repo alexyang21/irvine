@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  require 'mandrill'
   include CurrentCart
   before_action :authenticate_user!
 
@@ -51,8 +52,25 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
-        # Send a notification email to Alex
-        UserMailer.email_alert(@order).deliver
+        # Send email through Mandrill
+        m = Mandrill::API.new ENV["MANDRILL_APIKEY"]
+
+        message = {
+          :subject    => "Hello from the Mandrill API",
+          :from_name  => "Alex",
+          :text       => "Hi message, how are you?",
+          :to         => [{
+            :email    => "susie.ye19@gmail.com",
+            :name     => "Susie Ye"
+          }],
+          :html       =>"<html><h1>Hi <strong>message</strong>, how are you?</h1></html>",
+          :from_email =>"alex@fliporder.com"
+        }
+        sending = m.messages.send message
+        logger.info "#{sending.inspect}"
+
+        # # Send a notification email to Alex
+        # UserMailer.email_alert(@order).deliver
 
         # # Send an email receipt to user
         # UserMailer.email_receipt(current_user, @order).deliver
