@@ -31,4 +31,21 @@
   .btn {
     margin: 1%;
   }
+
+  .center {
+    margin-bottom: 25px;
+  }
+
+  .nav-tabs.nav-justified {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .nav-tabs {
+    border: 1px solid #dddddd;
+  }
+
+  .nav-justified > li, .nav-tabs.nav-justified > li {
+    border-top: none;
+  }
 }
