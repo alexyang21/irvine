@@ -14,8 +14,9 @@ gem 'devise'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'aws-sdk', '~> 1.20.0'
-gem 'paperclip', "~> 3.0"
+gem 'paperclip', '~> 3.0'
 gem 'pg'
+gem 'mandrill-api', '~> 1.0.49'
 
 group :production do
   gem 'rails_12factor'
