@@ -36,8 +36,8 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
-    # # Remember to change this to your live secret key in production
-    # Stripe.api_key = ENV["STRIPE_TEST_API_KEY"]
+    # Remember to change this to your live secret key in production
+    Stripe.api_key = ENV["STRIPE_TEST_API_KEY"]
 
     # Get the credit card details submitted by the form
     token = params[:stripeToken]
