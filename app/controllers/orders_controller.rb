@@ -51,8 +51,8 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
-        # # Send a notification email to Alex
-        # UserMailer.email_alert(@order)
+        # Send a notification email to Alex
+        UserMailer.email_alert(@order)
 
         # # Send an email receipt to user
         # UserMailer.email_receipt(current_user, @order).deliver
