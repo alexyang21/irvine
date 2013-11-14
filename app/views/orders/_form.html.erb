@@ -1,14 +1,18 @@
-<%= form_for @order, :html => { id: "order-form" } do |f| %>
+<%= form_for @order, :html => { id: "order-form", autocomplete: "on" } do |f| %>
 
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <%= render 'shared/error_messages' %>
+
+  <% if false %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+        <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
 
   <div id="stripe_error">
@@ -71,13 +75,16 @@
         <%= label_tag :card_number, "Credit Card Number" %>
         <%= text_field_tag :card_number, nil,
             { :name => nil, :'data-stripe' => "number",
-              class: "form-control card_number" } %>
+              autocompletetype: "cc-number",
+              class: "form-control card-number" } %>
       </div>
       <div class="col-lg-3">
         <%= label_tag :card_code, "CVC" %>
         <%= text_field_tag :card_code, nil,
             { :name => nil, :'data-stripe' => "cvc",
-              class: "form-control" } %>
+              maxlength: "4", autocomplete: "off",
+              autocompletetype: "cc-csc",
+              class: "form-control card-cvc" } %>
       </div>
     </div>
 

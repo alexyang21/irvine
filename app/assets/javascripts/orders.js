@@ -17,8 +17,14 @@ var stripeResponseHandler = function(status, response) {
 };
 
 jQuery(function($) {
+  // Set Stripe key
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
 
+  // Format card number and CVC inputs
+  $('.card-number').payment('formatCardNumber');
+  $('.card-cvc').payment('formatCardCVC');
+
+  // Handle form submission
   $('#order-form').submit(function(event) {
 
     var $form = $(this);
