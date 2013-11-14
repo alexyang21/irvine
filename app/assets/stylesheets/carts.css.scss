@@ -1,3 +1,4 @@
+
 .carts, .side_bar {
 
   th, td {
@@ -10,7 +11,7 @@
   .total_line {
     .total_cell {
       font-size: small;
-      border-top: 1px solid #000000;
+      /* border-top: 1px solid #000000; */
     }
   }
 
@@ -27,9 +28,9 @@
     margin-top: -5x;
   }
 
-  .quantity {
-    padding: 5px 0px 5px 0px;
-  }
+ .quantity {
+   padding: 7px 0px 3px 0px;
+ }
 }
 
 // Set table width for sidebar content when not in cart view
@@ -52,4 +53,6 @@
       width: 100%;
     }
   }
+
+
 }

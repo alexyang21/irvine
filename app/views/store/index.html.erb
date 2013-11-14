@@ -13,7 +13,7 @@
       <% cache ['store', Restaurant.latest] do %>
         <% @restaurants.each do |restaurant| %>
           <% cache ['restaurant', restaurant] do %>
-
+         
             <div class="col-md-3">
               <div class="thumbnail">
                 <%= link_to(image_tag(restaurant.image.url(:thumb)),
@@ -25,6 +25,7 @@
                 </div>
               </div>
             </div>
+  
           <% end %>
         <% end %>
       <% end %>
