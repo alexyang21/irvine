@@ -45,12 +45,23 @@
   </div>
 
   <div class="col-md-3">
+    <div class="cart">
     <%= hidden_div_if(@cart.items.empty?, class: "side_bar") do %>
       <%= render @cart %>
     <% end %>
   </div>
+  </div>
 </div>
 
-<%= link_to root_path do %>
-  <i class="glyphicon glyphicon-chevron-left"></i> Back
-<% end %>
+
+<div class="back_button">
+  <div class="row">
+
+  <%= link_to root_path do %>
+    <i class="glyphicon glyphicon-chevron-left"></i> Back to all restaurants
+  <% end %>
+
+  </div>
+</div>
+
+
