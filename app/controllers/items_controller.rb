@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action except: [:create, :destroy, :decrease, :increase] do
     require_login "You need to be logged in (and be an Admin) to see that"
   end
+
   before_action :require_admin, except: [:create, :destroy, :decrease, :increase]
   before_action :set_cart, only: [:create, :destroy, :decrease, :increase]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
