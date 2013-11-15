@@ -19,8 +19,11 @@ module ApplicationHelper
   def select_times
     times = []
     (2..6).each do |i|
+
       raw_time = (i*30).minutes.from_now
       rounded_time = Time.at((raw_time.to_f / 900).round * 900)
+      logger.info ("Raw time is #{raw_time}")
+      logger.info ("converted time is #{raw_time.in_time_zone("Pacific Time (US & Canada)")}")
       if i == 2
         times << ["ASAP (45-60 min)", rounded_time.strftime("%H:%M")]
       else
