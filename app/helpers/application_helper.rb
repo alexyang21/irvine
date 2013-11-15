@@ -8,19 +8,24 @@ module ApplicationHelper
 
   def select_dates
     dates = []
-    dates << ["Today (#{0.days.from_now.strftime("%A")})", "#{0.days.from_now.to_date}"]
-    dates << ["Tomorrow (#{1.days.from_now.strftime("%A")})", "#{1.days.from_now.to_date}"]
+    dates << ["Today (#{0.days.from_now.strftime("%A")})", 0.days.from_now.to_date]
+    dates << ["Tomorrow (#{1.days.from_now.strftime("%A")})", 1.days.from_now.to_date]
     (2..6).each do |i|
-      dates << ["#{i.days.from_now.strftime("%A, %b %e")}", "#{i.days.from_now.to_date}"]
+      dates << ["#{i.days.from_now.strftime("%A, %b %e")}", i.days.from_now.to_date]
     end
     dates
   end
 
   def select_times
     times = []
-    times << ["ASAP (45-60 min)", "Placeholder"]
-    (3..6).each do |i|
-      times << ["#{(i*30).minutes.from_now.round_off(15.minutes).strftime("%l:%M %P")}", "Placeholder"]
+    (2..6).each do |i|
+      raw_time = (i*30).minutes.from_now
+      rounded_time = Time.at((raw_time.to_f / 900).round * 900)
+      if i == 2
+        times << ["ASAP (45-60 min)", rounded_time.strftime("%H:%M")]
+      else
+        times << ["#{rounded_time.strftime("%l:%M %P")}", rounded_time.strftime("%H:%M")]
+      end
     end
     times
   end
