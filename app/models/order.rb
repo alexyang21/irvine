@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :items, dependent: :destroy
 
-  validates :name, :email, :phone, :address, :city, :state,
+  validates :name, :email, :phone, :address, :city, :state, :date, :time,
             presence: true
 
   def add_items_from_cart(cart)

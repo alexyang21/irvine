@@ -1,8 +1,8 @@
 development:
   adapter: postgresql
   host: localhost
-  user: susieye
-  database: susieye
+  user: alexyang
+  database: alexyang
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
