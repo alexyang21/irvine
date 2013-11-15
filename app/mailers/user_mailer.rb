@@ -11,23 +11,18 @@ class UserMailer < ActionMailer::Base
   def email_receipt(user, order)
     begin
       mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"]
-      template_name = "FILL_IN_HERE"
+      template_name = "customer-order-receipt"
       template_content = [
-        {
-          name:             "header",
-          content:          "
-                            <h1>Content</h1>
-                            "
-        },
         {
           name:             "main",
           content:          "
-                            <h1>Content</h1>
+                            Restaurant: #{order.items.first.menu.restaurant.name}<br>
+                            <br>
+                            Customer address:<br>
                             "
         }
       ]
       message = {
-        subject:            "SUBJECT",
         to: [{
           email:            "alexyang.personal@gmail.com",
           name:             "Alex Yang"
