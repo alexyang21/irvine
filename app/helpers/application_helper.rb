@@ -21,7 +21,7 @@ module ApplicationHelper
     (2..6).each do |i|
 
       raw_time = (i*30).minutes.from_now
-      rounded_time = Time.at((raw_time.to_f / 900).round * 900)
+      rounded_time = Time.at((raw_time.to_f / 900).round * 900).in_time_zone("Pacific Time (US & Canada)")
       logger.info ("#{i} Raw time is #{raw_time}")
       logger.info ("#{i} Rounded time is #{rounded_time}")
       logger.info ("#{i} Converted time is #{raw_time.in_time_zone("Pacific Time (US & Canada)")}")
