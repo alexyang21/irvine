@@ -29,7 +29,7 @@ end
 
 CSV.foreach("seed_menus.csv", { headers: true, encoding: "iso-8859-1:UTF-8" }) do |row|
   Menu.create!( name:           row['name'],
-                description:    row['description]'],
+                description:    row['description'],
                 price:          row['price'],
                 category:       row['category'],
                 restaurant_id:  Restaurant.find_by(name: row['restaurant']).id)
