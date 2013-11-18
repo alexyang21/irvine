@@ -6,9 +6,16 @@ html, body {
 
 body {
   background-image: url("https://s3.amazonaws.com/fliporder/images/greyzz_wallpaper.png");
-
 }
 
+a {
+  color: #5e5e5e;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #9e9e9e;
+}
 .wrapper {
   // min-height: 100%;
   // height: auto;

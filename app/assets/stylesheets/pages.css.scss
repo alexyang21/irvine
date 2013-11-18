@@ -3,21 +3,17 @@
     width: 75%;
     margin: auto;
   }
-  .container .footer {
-    padding: 20px;
-  }
-
+ 
   .textframe {
-      border: 3px solid #7e7e7e;
-      border-radius:10px;
-      padding: 30px;
-      width: 100%;
-      margin-bottom: 70px;
-      background-image: url('ricepaper.png')
+      padding: 21px;
+      width: 85%;
+      a {
+        font-size: 21px;
+      }
 }
     .textframe p {
-      font-size: 20px;
-      line-height: 27px;
+      font-size: 21px;
+      line-height: 30px;
     }
 
 .content-header {
@@ -25,23 +21,33 @@
 }
 
 .content-header p {
-  font-size: 15px;
+  font-size: 18px;
 }
+
 .contact-container {
   text-align: center;
   font-size: 28px;
-  border: 2px solid #727272;
-  border-radius: 10px; 
+  /*border: 1px solid #ffae19;
+  border-radius: 10px;*/    
   padding: 10px; 
-  width: 50%;
+  width: 30%;
   float: none;
   margin: 0 auto;
-  background-image: url('ricepaper.png')
 }
 
 .box p {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 21px;
+  line-height: 30px;
 }
+
+a {
+  color: #ffae19;
+}
+
+h2, h3, p, a {
+  font-weight: 200;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 }
 
