@@ -6,7 +6,7 @@
 
     <ul class="nav nav-pills nav-justified">
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
-      <% categories = categories.reverse %>
+      <% logger.info "Categories are #{categories}" %>
 
       <% categories.each_with_index do |category, index| %>
 
@@ -16,6 +16,7 @@
           <li>
         <% end %>
 
+        <% logger.info "Current category is #{category}" %>
         <%= link_to "#{category}", "\##{clean_category(category)}",
             :'data-toggle' => "pill" %>
 

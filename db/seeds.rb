@@ -35,6 +35,9 @@ CSV.foreach("seed_menus.csv", { headers: true, encoding: "iso-8859-1:UTF-8" }) d
                 restaurant_id:  Restaurant.find_by(name: row['restaurant']).id)
 end
 
+categories = Menu.all.to_a.map { |m| m.category }.uniq
+puts categories
+
 # name = "California Fish Grill"
 # Restaurant.create!( name:         name,
 #                     description:  "Seafood",
