@@ -1,9 +1,9 @@
- <div class="container-fluid">
-<div class="jumbotron">
+<div class="container-fluid">
+  <div class="jumbotron">
     <h1>Delivery from your <br />
       favorite Irvine restaurants!</h1>
     <p>$6 flat rate delivery. No minimum order.</p>
-</div>
+  </div>
 </div>
 
 <div class="row">
@@ -13,8 +13,8 @@
       <% cache ['store', Restaurant.latest] do %>
         <% @restaurants.each do |restaurant| %>
           <% cache ['restaurant', restaurant] do %>
-
-            <div class="col-md-3">
+         
+            <div class="col-md-3 col-sm-4 col-xs-6">
               <div class="thumbnail">
                 <%= link_to(image_tag(restaurant.image.url(:medium)),
                     store_path(restaurant.name)) %>
