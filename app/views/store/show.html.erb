@@ -7,6 +7,7 @@
     <ul class="nav nav-pills nav-justified">
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
 
+
       <% categories.each_with_index do |category, index| %>
 
         <% if index == 0 %>
@@ -31,8 +32,7 @@
           <div class="pill-pane fade" id="<%= clean_category(category) %>">
         <% end %>
 
-          <% pill_menus = @menus.select { |menu|
-              menu.category == category } %>
+          <% pill_menus = @menus.select { |menu| menu.category == category } %>
           <%= render 'store/listing', :menus => pill_menus %>
 
         </div>
