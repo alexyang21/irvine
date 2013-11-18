@@ -6,7 +6,7 @@
 
     <ul class="nav nav-pills nav-justified">
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
-
+      <% categories = categories.reverse %>
 
       <% categories.each_with_index do |category, index| %>
 
