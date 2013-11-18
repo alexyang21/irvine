@@ -8,8 +8,7 @@
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
 
       <!-- Sort categories by order of entry -->
-      <% categories.sort! { |x,y|
-          Menu.find_by(category: x).id <=> Menu.find_by(category: y).id} %>
+      <% categories.sort! { |x,y| Menu.find_by(category: x, restaurant_id: @restaurant.id).id <=> Menu.find_by(category: y, restaurant_id: @restaurant.id).id} %>
 
       <% categories.each_with_index do |category, index| %>
 
