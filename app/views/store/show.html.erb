@@ -6,7 +6,10 @@
 
     <ul class="nav nav-pills nav-justified">
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
-      <% logger.info "Categories are #{categories}" %>
+
+      <!-- Sort categories by order of entry -->
+      <% categories.sort! { |x,y|
+          Menu.find_by(category: x).id <=> Menu.find_by(category: y).id} %>
 
       <% categories.each_with_index do |category, index| %>
 
@@ -16,7 +19,6 @@
           <li>
         <% end %>
 
-        <% logger.info "Current category is #{category}" %>
         <%= link_to "#{category}", "\##{clean_category(category)}",
             :'data-toggle' => "pill" %>
 
