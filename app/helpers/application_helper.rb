@@ -6,6 +6,10 @@ module ApplicationHelper
     content_tag("div", attributes, &block)
   end
 
+  def clean_category(category)
+    category.gsub(/[^0-9A-Za-z]/, '')
+  end
+
   def select_dates
     dates = []
     dates << ["Today (#{0.days.from_now.strftime("%A")})", 0.days.from_now.to_date]

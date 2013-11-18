@@ -4,12 +4,8 @@
       <h1><%= @restaurant.name %></h1>
     </div>
 
-    <% logger.info "Restaurant name is #{@restaurant.name}" %>
-    <% logger.info "#{@restaurant.name} has #{@menus.count} items" %>
-
-    <ul class="nav nav-tabs nav-justified">
+    <ul class="nav nav-pills nav-justified">
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
-      <% categories = categories.reverse %>
 
       <% categories.each_with_index do |category, index| %>
 
@@ -19,25 +15,25 @@
           <li>
         <% end %>
 
-        <%= link_to "#{category}", "\##{category}",
-            :'data-toggle' => "tab" %>
+        <%= link_to "#{category}", "\##{clean_category(category)}",
+            :'data-toggle' => "pill" %>
 
         </li>
       <% end %>
     </ul>
 
-    <div class="tab-content">
+    <div class="pill-content">
       <% categories.each_with_index do |category, index| %>
 
         <% if index == 0 %>
-          <div class="tab-pane fade in active" id="<%= category %>">
+          <div class="pill-pane fade in active" id="<%= clean_category(category) %>">
         <% else %>
-          <div class="tab-pane fade" id="<%= category %>">
+          <div class="pill-pane fade" id="<%= clean_category(category) %>">
         <% end %>
 
-          <% tab_menus = @menus.select { |menu|
+          <% pill_menus = @menus.select { |menu|
               menu.category == category } %>
-          <%= render 'store/listing', :menus => tab_menus %>
+          <%= render 'store/listing', :menus => pill_menus %>
 
         </div>
       <% end %>
