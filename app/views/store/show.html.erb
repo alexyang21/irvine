@@ -34,7 +34,10 @@
           <div class="pill-pane fade" id="<%= clean_category(category) %>">
         <% end %>
 
+          <!-- Select and sort menu items by order of entry -->
           <% pill_menus = @menus.select { |menu| menu.category == category } %>
+          <% pill_menus.sort! { |x,y| x.id <=> y.id } %>
+
           <%= render 'store/listing', :menus => pill_menus %>
 
         </div>
