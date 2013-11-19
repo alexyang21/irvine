@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h2>Partner with us!</h2>
+</div>
+
+  <div class="textframe">
+  <p>
+    Bring more business to your restaurant by signing up to be one of our Restaurant Partners. We only work with brands that value excellent customer service and have a solid reputation in their community.
+  <br><br>
+    As a partner, FlipOrder will handle the entire process from collecting the order on our website to picking up food for delivery. You only have to do what you do best—cook delicious food for a growing customer base.
+  <br><br>
+    Our goal for our Restaurant Partners is to bring you an average of 25 orders per day, with an average order size of $35. That’s potentially $300,000 of additional revenue you’ll be making with us per year!
+  <br><br>
+    Please fill out the form below if you’d like more information and we will get back to you within 24 hours.
+  </p>
+</div>
+
+<%= form_for @vendor, html: { class: "form-horizontal" } do |f| %>
+  <% if @vendor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+      <% @vendor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :restaurant, "Restaurant name", class: "col-lg-2 control-label" %><br>
+    <div class="col-lg-6">
+      <%= f.text_field :restaurant, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+      <%= f.label :name, "Your name", class: "col-lg-2 control-label" %><br>
+    <div class="col-lg-6">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+      <%= f.label :email, "Your email", class: "col-lg-2 control-label" %><br>
+    <div class="col-lg-6">
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+      <%= f.label :phone, "Your phone", class: "col-lg-2 control-label" %><br>
+    <div class="col-lg-6">
+      <%= f.text_field :phone, class: "form-control" %>
+    </div>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-success btn-lg" %>
+  </div>
+<% end %>

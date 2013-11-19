@@ -24,8 +24,8 @@ class UserMailer < ActionMailer::Base
       ]
       message = {
         to: [{
-          email:            "alexyang.personal@gmail.com",
-          name:             "Alex Yang"
+          email:            user.email,
+          name:             user.name
         }]
       }
       result = mandrill.messages.send_template template_name, template_content, message

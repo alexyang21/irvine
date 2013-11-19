@@ -1,0 +1,135 @@
+<%= form_for @driver do |f| %>
+  <% if @driver.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@driver.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+      <% @driver.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <legend>Personal Information</legend>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-lg-3">
+        <%= f.label :first_name %><br>
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+      <div class="col-lg-3">
+        <%= f.label :last_name %><br>
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.label :email %><br>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.label :phone %><br>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.label :old_enough, "Are you 21 years old or older?" %><br>
+        <%= f.radio_button :old_enough, "true" %>
+        <%= label :old_enough, "Yes" %><br>
+        <%= f.radio_button :old_enough, "false" %>
+        <%= label :old_enough, "No" %><br>
+      </div>
+    </div>
+  </div>
+
+  <legend>Driving Information</legend>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.label :car_year, "Your Car" %><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.text_field :car_year, class: "form-control",
+            placeholder: "Year (e.g. 2010)" %>
+      </div>
+      <div class="col-lg-2">
+        <%= f.text_field :car_make, class: "form-control",
+            placeholder: "Make (e.g. Honda)" %>
+      </div>
+      <div class="col-lg-2">
+        <%= f.text_field :car_model, class: "form-control",
+            placeholder: "Model (e.g. Accord)" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-10">
+        <%= f.label :conviction, "Have you had a conviction for DUI, DWI, reckless driving, or driving with a suspended license in the last 5 years?" %><br>
+        <%= f.radio_button :conviction, "true" %>
+        <%= label :conviction, "Yes" %><br>
+        <%= f.radio_button :conviction, "false" %>
+        <%= label :conviction, "No" %><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.label :experience, "How long have you been driving on a regular basis?" %><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.select :experience, options_for_select([
+          ["Less than 2 years", "Less than 2 years"],
+          ["2 - 5 years", "2 - 5 years"],
+          ["More than 5 years", "More than 5 years"]]),
+          {include_blank: "Choose below"},
+          { :class => "form-control" } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.label :violations, "How many moving violations have you received in the last 3 years?" %><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.select :violations, options_for_select([
+          ["None", "None"], ["1", "1"], ["2", "2"], ["3", "3"],
+          ["4", "4"], ["5+", "3+"]]), {include_blank: "Choose below"},
+          { :class => "form-control" } %>
+      </div>
+    </div>
+  </div>
+
+  <legend>Work Information</legend>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.label :hours, "How many hours per week can you work?" %><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <%= f.select :hours, options_for_select([
+          ["Less than 10 hours", "Less than 10 hours"],
+          ["10 - 20 hours", "10 - 20 hours"],
+          ["20 - 30 hours", "20 - 30 hours"],
+          ["30 - 40 hours", "30 - 40 hours"]]), {include_blank: "Choose below"},
+          { :class => "form-control" } %>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= f.submit "Apply Now", class: "btn btn-success btn-lg" %>
+  </div>
+<% end %>
