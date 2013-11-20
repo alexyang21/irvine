@@ -10,22 +10,80 @@ class UserMailer < ActionMailer::Base
 
   def email_receipt(user, order)
     begin
-      mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"]
+
+      # Create dynamic content string to pass to Mandrill
+      content_main = "
+        <p>Delivery to:</p>
+        <p> 
+          #{order.name}<br>
+          #{order.address}, #{order.city}, #{order.state}<br>
+          Thu, 11/16 @ 6:00pm
+        </p>
+        <br>
+      "
+     
+      content_menu = ""
+      order.items.each do |item|
+        content_menu << "
+            <tr>
+              <td>#{item.menu.name}</td>
+              <td>#{item.quantity}</td>
+              <td>#{helpers.number_to_currency(item.menu.price)}</td>
+            </tr>
+        "
+      end
+      content_charge = "
+          
+          <tr>
+            <td>Tax</td>
+            <td></td>
+            <td>#{helpers.number_to_currency(order.total_price * 0.08)}</td>
+          </tr>
+          <tr>
+            <td>Tip</td>
+            <td></td>
+            <td>$5.00</td>
+          </tr>
+          <tr>
+            <td>Delivery</td>
+            <td></td>
+            <td>$6.00</td>
+          </tr>
+      "
+
+        content_total = "
+          <tr>
+            <td>Total</td>
+            <td></td>
+            <td>#{helpers.number_to_currency(order.total_price * 1.08 + 6.00)}</td>
+          </tr>
+      "
+
+      # Set variables for Mandrill API
+      mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"] 
       template_name = "customer-order-receipt"
       template_content = [
         {
-          name:             "main",
-          content:          "
-                            Restaurant: #{order.items.first.menu.restaurant.name}<br>
-                            <br>
-                            Customer address:<br>
-                            "
+          name:     "main",
+          content:  content_main
+        },
+        {
+          name:     "menu",
+          content:  content_menu
+        },
+        {
+          name:     "charge",
+          content:  content_charge
+        },
+        {
+          name:     "total",
+          content:  content_total
         }
       ]
       message = {
         to: [{
-          email:            user.email,
-          name:             user.name
+          email:            "susie.ye19@gmail.com",
+          name:             "Susie Ye"
         }]
       }
       result = mandrill.messages.send_template template_name, template_content, message
