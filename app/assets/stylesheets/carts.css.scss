@@ -1,8 +1,7 @@
-
 .carts, .side_bar {
 
   th, td {
-    font-size: x-small;
+    font-size: small;
   }
 
   .quantity {
@@ -37,6 +36,8 @@
 .side_bar {
   .table {
     width: 100%;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #e1e1e1;
   }
 }
 
@@ -46,13 +47,5 @@
   .table {
     width: 80%;
   }
-
-  // Set table width for sidebar content in cart view
-  .side_bar {
-    .table {
-      width: 100%;
-    }
-  }
-
 
 }

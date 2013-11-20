@@ -29,14 +29,30 @@ label {
 	}
 
 .table tbody > tr > td {
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .table {
-margin-bottom: -15px;
+margin-bottom: 20px;
 } 
 
+.panel-default > .panel-heading {
+	font-size: 18px;
+}
+
+.panel {
+	margin-top: 40px;
+}
+
 .side_bar .quantity {
-	padding: 5px 80px 5px 90px;
+	padding: 5px 7px 5px 7px;
+}
+
+.total {
+	padding-right: 20px;
+}
+.total p {
+	font-size: 16px;
+	text-align: right;
 }
 }

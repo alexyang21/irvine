@@ -5,10 +5,9 @@
   <div class="table-responsive">
     <table class="table table-hover">
       <colgroup>
+        <col class="col-md-5"></col>
         <col class="col-md-2"></col>
         <col class="col-md-1"></col>
-        <col class="col-md-1"></col>
-        <!-- <col class="col-md-1"></col>  -->
       </colgroup>
       <thead class="bold">
         <tr>
@@ -18,16 +17,20 @@
         </tr>
       </thead>
 
+
+
       <tbody>
         <%= render(cart.items.order(:created_at)) %>
       </tbody>
 
     </table>
   </div>
-  <p>Tax (8%): <%= number_to_currency(cart.total_price * 0.08) %></p>
-  <p>Delivery Fee: $6.00</p>
-  <p>TOTAL: <%= number_to_currency(cart.total_price * 1.08 + 6) %></p>
 
+  <div class="total">
+    <p>Tax (8%): <%= number_to_currency(cart.total_price * 0.08) %></p>
+    <p>Delivery Fee: $6.00</p>
+    <p>TOTAL: <%= number_to_currency(cart.total_price * 1.08 + 6) %></p>
+  </div>
   <% unless current_page?(controller: 'orders', action: 'new') %>
     <div class="row">
       <div class="col-md-6 center">
