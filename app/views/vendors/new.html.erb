@@ -17,8 +17,9 @@
 <%= form_for @vendor, html: { class: "form-horizontal" } do |f| %>
   <% if @vendor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
-
+      <div class="alert alert-danger">
+        <%= pluralize(@vendor.errors.count, "error") %> prohibited this restaurant from being saved:
+      </div>
       <ul>
       <% @vendor.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

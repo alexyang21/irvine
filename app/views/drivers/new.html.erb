@@ -1,8 +1,9 @@
 <%= form_for @driver do |f| %>
   <% if @driver.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@driver.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
-
+      <div class="alert alert-danger">
+        <%= pluralize(@driver.errors.count, "error") %> prohibited this restaurant from being saved:
+      </div>
       <ul>
       <% @driver.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

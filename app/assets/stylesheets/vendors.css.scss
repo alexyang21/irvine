@@ -1,3 +1,31 @@
 // Place all the styles related to the vendors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.vendors {
+
+	.form-horizontal .control-label {
+		padding-top: 30px;
+	}
+
+	  .textframe {
+	      padding: 21px;
+	      width: 85%;
+	      a {
+	        font-size: 21px;
+	      }
+	}
+	    .textframe p {
+	      font-size: 21px;
+	      line-height: 30px;
+	    }
+	    h2, h3, p, a {
+	      font-weight: 200;
+	      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	    }
+
+	    .actions {
+	    	padding-left: 37%;
+	    	/* padding-left: 434px; */
+	    }
+}

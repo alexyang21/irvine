@@ -105,6 +105,9 @@ footer {
   .col-md-3:nth-child(4n+1) {
     clear: left;
   }
+  .maincontainer {
+    padding-bottom: 53px;
+  }
 }
  
 @media only screen and (min-width : 768px) and (max-width : 1200px) {
@@ -114,6 +117,9 @@ footer {
   .col-md-12 {
     width: 100%;
   } 
+  .maincontainer {
+    padding-bottom: 53px;
+  }
 }
 
 @media only screen and (min-width : 320px) and (max-width : 768px) {
@@ -123,6 +129,14 @@ footer {
   .col-md-12 {
     width: 100%;
   } 
+
+  .maincontainer {
+    padding-bottom: 117px;
+  }
+
+  .navbar-nav > li > a {
+    padding: 0px 20px;
+  }
 }
 
 .center {
