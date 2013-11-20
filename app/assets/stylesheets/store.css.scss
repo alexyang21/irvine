@@ -3,15 +3,12 @@
   .nav-justified {
     margin: 10px 0px;
   }
-  .nav-pills > li > a {
-    height: 75px;
-  }
 
   .menu_listing_name {
     h4 {
       margin: 0% 0% 1% 0%;
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-weight: 300;
+      font-weight: 400;
     }
     p {
       margin: 0% 0% 0% 0%;
@@ -30,9 +27,20 @@
     left: 0px;
   }
 
+  .nav-pills > li > a {
+    height: 75px;
+    color: #ffae19;
+    font-weight: 500;
+  }
+
   .nav-pills > li.active > a {
-    color: #5e5e5e;
-    background-color: #e3e3e3;
+    color: #fff;
+    background-color: #ffae19;
+  }
+
+  .nav-justified > li > a:hover {
+    background-color: #ffd68c;
+    color: #fff;
   }
 
   .btn {
