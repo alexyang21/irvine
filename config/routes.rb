@@ -1,8 +1,8 @@
 FlipOrder::Application.routes.draw do
 
-  get "pages/about"
-  get "pages/vendor"
   resources :orders
+  resources :drivers, only: [:create]
+  resources :vendors, only: [:create]
 
   devise_for :users
 
@@ -19,11 +19,12 @@ FlipOrder::Application.routes.draw do
 
   root "store#index"
 
-  get '/about', to: 'pages#about'
-  get '/vendor', to: 'pages#vendor'
-  get '/drivers', to: 'pages#drivers'
-  get '/contact', to: 'pages#contact'
-  get '/:restaurant_name', to: 'store#show', as: 'store'
+  get '/drivers/apply',     to: 'drivers#new'
+  get '/about',             to: 'pages#about'
+  get '/vendors',            to: 'vendors#new'
+  get '/drivers',           to: 'pages#drivers'
+  get '/contact',           to: 'pages#contact'
+  get '/:restaurant_name',  to: 'store#show', as: 'store'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
