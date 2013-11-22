@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
         <p>
           #{order.name}<br>
           #{order.address}, #{order.city}, #{order.state}<br>
-          Thu, 11/16 @ 6:00pm
+          #{order.delivery_time.strftime("%a, %m/%d @ %l:%M %P")}
         </p>
         <br>
       "
@@ -25,38 +25,38 @@ class UserMailer < ActionMailer::Base
       content_menu = ""
       order.items.each do |item|
         content_menu << "
-            <tr>
-              <td>#{item.menu.name}</td>
-              <td>#{item.quantity}</td>
-              <td>#{helpers.number_to_currency(item.menu.price)}</td>
-            </tr>
+          <tr>
+            <td>#{item.menu.name}</td>
+            <td>#{item.quantity}</td>
+            <td>#{helpers.number_to_currency(item.menu.price)}</td>
+          </tr>
         "
       end
-      content_charge = "
 
-          <tr>
-            <td>Tax</td>
-            <td></td>
-            <td>#{helpers.number_to_currency(order.total_price * 0.08)}</td>
-          </tr>
-          <tr>
-            <td>Tip</td>
-            <td></td>
-            <td>$5.00</td>
-          </tr>
-          <tr>
-            <td>Delivery</td>
-            <td></td>
-            <td>$6.00</td>
-          </tr>
+      content_charge = "
+        <tr>
+          <td>Tax</td>
+          <td></td>
+          <td>#{helpers.number_to_currency(order.total_price * 0.08)}</td>
+        </tr>
+        <tr>
+          <td>Tip</td>
+          <td></td>
+          <td>$5.00</td>
+        </tr>
+        <tr>
+          <td>Delivery</td>
+          <td></td>
+          <td>$6.00</td>
+        </tr>
       "
 
-        content_total = "
-          <tr>
-            <td>Total</td>
-            <td></td>
-            <td>#{helpers.number_to_currency(order.total_price * 1.08 + 6.00)}</td>
-          </tr>
+      content_total = "
+        <tr>
+          <td>Total</td>
+          <td></td>
+          <td>#{helpers.number_to_currency(order.total_price * 1.08 + 6.00)}</td>
+        </tr>
       "
 
       # Set variables for Mandrill API
@@ -82,8 +82,8 @@ class UserMailer < ActionMailer::Base
       ]
       message = {
         to: [{
-          email:            "#{order.email}",
-          name:             "#{order.name}"
+          email:  "#{order.email}",
+          name:   "#{order.name}"
         }]
       }
       result = mandrill.messages.send_template template_name, template_content, message
@@ -98,6 +98,25 @@ class UserMailer < ActionMailer::Base
 
   def email_alert(order)
     begin
+      content = "
+        <p>Delivery to:</p>
+        <p>
+          #{order.name}<br>
+          #{order.phone}<br>
+          #{order.address}, #{order.city}, #{order.state}<br>
+          #{order.delivery_time.strftime("%a, %m/%d @ %l:%M %P")}
+        </p>
+        <br>
+      "
+      order.items.each do |item|
+        content << "
+          <tr>
+            <td>#{item.menu.name}</td>
+            <td>#{item.quantity}</td>
+            <td>#{helpers.number_to_currency(item.menu.price)}</td>
+          </tr>
+        "
+      end
       mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"]
       template_name = "alex-order-notification"
       template_content = [

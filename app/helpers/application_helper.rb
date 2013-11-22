@@ -21,12 +21,12 @@ module ApplicationHelper
     if (current_time >= opening_time) && (current_time <= closing_time)
       current_time_rounded = Time.at((current_time.to_f / 15.minutes).round * 15.minutes).in_time_zone("Pacific Time (US & Canada)")
       delivery_time = current_time_rounded + delivery_delay
-      times << ["ASAP (45-60 min)", delivery_time.strftime("%H:%M")]
+      times << ["ASAP (45-60 min)", delivery_time]
       delivery_time += 30.minutes
 
       # Delivery up until closing time
       while delivery_time <= (closing_time + delivery_delay)
-        times << ["#{delivery_time.strftime("%l:%M %P")}", delivery_time.strftime("%H:%M")]
+        times << ["#{delivery_time.strftime("%l:%M %P")}", delivery_time]
         delivery_time += 30.minutes
       end
     else
@@ -41,7 +41,7 @@ module ApplicationHelper
 
       (0..available_slots).each do |slot|
         delivery_time = opening_time + next_day.days + (slot*30).minutes
-        times << ["#{tomorrow + delivery_time.strftime("%l:%M %P")}", delivery_time.strftime("%a, %m/%d/%y at %H:%M")]
+        times << ["#{tomorrow + delivery_time.strftime("%l:%M %P")}", delivery_time]
       end
     end
     times
