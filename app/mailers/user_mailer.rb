@@ -14,14 +14,14 @@ class UserMailer < ActionMailer::Base
       # Create dynamic content string to pass to Mandrill
       content_main = "
         <p>Delivery to:</p>
-        <p> 
+        <p>
           #{order.name}<br>
           #{order.address}, #{order.city}, #{order.state}<br>
           Thu, 11/16 @ 6:00pm
         </p>
         <br>
       "
-     
+
       content_menu = ""
       order.items.each do |item|
         content_menu << "
@@ -33,7 +33,7 @@ class UserMailer < ActionMailer::Base
         "
       end
       content_charge = "
-          
+
           <tr>
             <td>Tax</td>
             <td></td>
@@ -60,7 +60,7 @@ class UserMailer < ActionMailer::Base
       "
 
       # Set variables for Mandrill API
-      mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"] 
+      mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"]
       template_name = "customer-order-receipt"
       template_content = [
         {
@@ -82,8 +82,8 @@ class UserMailer < ActionMailer::Base
       ]
       message = {
         to: [{
-          email:            "susie.ye19@gmail.com",
-          name:             "Susie Ye"
+          email:            "#{order.email}",
+          name:             "#{order.name}"
         }]
       }
       result = mandrill.messages.send_template template_name, template_content, message

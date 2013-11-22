@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
   def create
 
     # Remember to change this to your live secret key in production
-    Stripe.api_key = ENV["STRIPE_TEST_API_KEY"]
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
 
     # Get the credit card details submitted by the form
     token = params[:stripeToken]

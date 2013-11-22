@@ -76,7 +76,7 @@
         <%= label_tag :card_number, "Credit Card Number" %>
         <%= text_field_tag :card_number, nil,
             { :name => nil, :'data-stripe' => "number",
-              autocompletetype: "cc-number",
+              maxlength: "16", autocompletetype: "cc-number",
               class: "form-control card-number" } %>
       </div>
       <div class="col-lg-3">
