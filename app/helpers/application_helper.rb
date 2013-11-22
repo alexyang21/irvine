@@ -11,6 +11,8 @@ module ApplicationHelper
   end
 
   def select_delivery_time
+    logger.info "Current time is #{Time.now}"
+    logger.info "Current time at 5:00pm is #{Time.now.change({hour: 17}}"
     times = []
     current_time = Time.now
     opening_time = Time.now.change({hour: 17})
@@ -20,7 +22,9 @@ module ApplicationHelper
 
     if (current_time >= opening_time) && (current_time <= closing_time)
       current_time_rounded = Time.at((current_time.to_f / 15.minutes).round * 15.minutes).in_time_zone("Pacific Time (US & Canada)")
+      logger.info "Current time rounded is #{current_time_rounded}"
       delivery_time = current_time_rounded + delivery_delay
+      logger.info "Delivery time is #{delivery_time}"
       times << ["ASAP (45-60 min)", delivery_time.strftime("%H:%M")]
       delivery_time += 30.minutes
 
