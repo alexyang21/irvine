@@ -37,10 +37,11 @@ class OrdersController < ApplicationController
   def create
 
     # Remember to change this to your live secret key in production
-    Stripe.api_key = ENV["STRIPE_TEST_API_KEY"]
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
 
     # Get the credit card details submitted by the form
     token = params[:stripeToken]
+    logger.info "Token is #{token.inspect}"
 
     @order = Order.new(order_params)
     @order.add_items_from_cart(@cart)
@@ -51,24 +52,24 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
-        # # Send a notification email to Alex
-        # UserMailer.email_alert(@order)
+        # Send a notification email to Alex
+        UserMailer.email_alert(@order)
 
         # Send an email receipt to user
         UserMailer.email_receipt(current_user, @order).deliver
 
-        # # Create the charge on Stripe's servers - this will charge the user's card
-        # begin
-        #   charge = Stripe::Charge.create(
-        #     :amount => (100 * @order.total_price).to_i,
-        #     :currency => "usd",
-        #     :card => token,
-        #     :description => "payinguser@example.com"
-        #   )
-        #   flash[:success] = "Thanks for ordering!"
-        # rescue Stripe::CardError => e
-        #   flash[:danger] = e.message
-        # end
+        # Create the charge on Stripe's servers - this will charge the user's card
+        begin
+          charge = Stripe::Charge.create(
+            :amount => (100 * (@order.total_price*1.08 + 6.00)).to_i,
+            :currency => "usd",
+            :card => token,
+            :description => "payinguser@example.com"
+          )
+          flash[:success] = "Thanks for ordering!"
+        rescue Stripe::CardError => e
+          flash[:danger] = e.message
+        end
 
         format.html { redirect_to(root_url) }
         format.json { render action: 'show', status: :created, location: @order }
@@ -114,7 +115,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :email, :phone, :address, :city, :state, :date, :time, :driver_instructions)
+      params.require(:order).permit(:name, :email, :phone, :address, :city, :state, :delivery_time, :driver_instructions)
     end
 
     def check_cart_empty

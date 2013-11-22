@@ -1,8 +1,7 @@
 <% content_for :head do %>
   <%= tag :meta, :name => "stripe-key",
-          :content => ENV["STRIPE_TEST_PUBLIC_KEY"] %>
-  <%= javascript_include_tag "http://stripe.github.io/jquery.payment/lib/jquery.payment.js",
-      "application" %>
+          :content => ENV["STRIPE_PUBLIC_KEY"] %>
+  <%= javascript_include_tag "http://stripe.github.io/jquery.payment/lib/jquery.payment.js", "application" %>
 <% end %>
 
 <div class="row">

@@ -2,14 +2,18 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :items, dependent: :destroy
 
-  validates :name, :email, :phone, :address, :city, :state, :date, :time,
+  validates :name, :email, :phone, :address, :city, :state, :delivery_time,
             presence: true
 
-  validates :date, format: { with: /\d{4}-\d{2}-\d{2}/,
-            message: "Date should be of form YYYY-MM-DD" }
+  # Email address validation
+  validates :email, format: { with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/,
+            message: "Invalid email address" }
 
-  validates :time, format: { with: /\d{2}:\d{2}/,
-            message: "Time should be of form HH:MM (24-hour clock)"}
+  # Physical address validation
+  validates :city, inclusion: { in: %w(Irvine Tustin irvine tustin),
+            message: "Sorry, we're only delivering to Irvine/Tustin for now!" }
+  validates :state, inclusion: { in: %w(CA Ca cA ca),
+            message: "Sorry, you must be in California to order!"}
 
   def add_items_from_cart(cart)
     cart.items.each do |item|
