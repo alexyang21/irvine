@@ -98,6 +98,44 @@ class UserMailer < ActionMailer::Base
 
   def email_alert(order)
     begin
+
+      content_menu = ""
+      order.items.each do |item|
+        content_menu << "
+            <tr>
+              <td>#{item.menu.name}</td>
+              <td>#{item.quantity}</td>
+              <td>#{helpers.number_to_currency(item.menu.price)}</td>
+            </tr>
+        "
+      end
+      content_charge = "
+          
+          <tr>
+            <td>Tax</td>
+            <td></td>
+            <td>#{helpers.number_to_currency(order.total_price * 0.08)}</td>
+          </tr>
+          <tr>
+            <td>Tip</td>
+            <td></td>
+            <td>$5.00</td>
+          </tr>
+          <tr>
+            <td>Delivery</td>
+            <td></td>
+            <td>$6.00</td>
+          </tr>
+      "
+
+        content_total = "
+          <tr>
+            <td>Total</td>
+            <td></td>
+            <td>#{helpers.number_to_currency(order.total_price * 1.08 + 6.00)}</td>
+          </tr>
+      "
+      
       mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"]
       template_name = "alex-order-notification"
       template_content = [
@@ -113,6 +151,18 @@ class UserMailer < ActionMailer::Base
                             #{order.address}<br>
                             #{order.city}, #{order.state}
                             "
+        },
+        {
+          name:     "menu",
+          content:  content_menu
+        },
+        {
+          name:     "charge",
+          content:  content_charge
+        },
+        {
+          name:     "total",
+          content:  content_total
         }
       ]
       message = {
