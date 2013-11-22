@@ -1,13 +1,6 @@
 class UserMailer < ActionMailer::Base
   require 'mandrill'
 
-  # def email_receipt(user, order)
-  #   @user = user
-  #   @order = order
-  #   email_with_name = "#{@order.name} <#{@order.email}>"
-  #   mail(to: email_with_name, subject: "Hello from FlipOrder!")
-  # end
-
   def email_receipt(user, order)
     begin
 
@@ -99,59 +92,59 @@ class UserMailer < ActionMailer::Base
   def email_alert(order)
     begin
 
-      content_main = 
+      content_main =
       "
-                                  Restaurant: #{order.items.first.menu.restaurant.name}<br>
-                                  Restaurant Phone: #{order.items.first.menu.restaurant.phone}<br>
-                                  Restaurant Address:<br>
-                                  #{order.items.first.menu.restaurant.address}<br>
-                                  #{order.items.first.menu.restaurant.city}, #{order.items.first.menu.restaurant.state}
-                                  <br>
-                                  <br>
-                                  Customer name: #{order.name}<br>
-                                  Customer email: #{order.email}<br>
-                                  Customer phone: #{order.phone}<br>
-                                  Customer address:<br>
-                                  #{order.address}<br>
-                                  #{order.city}, #{order.state}<br>
-                                  #{order.delivery_time.strftime("%a, %m/%d @ %l:%M %P")}
-                                  "
+        Restaurant: #{order.items.first.menu.restaurant.name}<br>
+        Restaurant Phone: #{order.items.first.menu.restaurant.phone}<br>
+        Restaurant Address:<br>
+        #{order.items.first.menu.restaurant.address}<br>
+        #{order.items.first.menu.restaurant.city}, #{order.items.first.menu.restaurant.state}
+        <br>
+        <br>
+        Customer name: #{order.name}<br>
+        Customer email: #{order.email}<br>
+        Customer phone: #{order.phone}<br>
+        Customer address:<br>
+        #{order.address}<br>
+        #{order.city}, #{order.state}<br>
+        #{order.delivery_time.strftime("%a, %m/%d @ %l:%M %P")}
+      "
 
       content_menu = ""
       order.items.each do |item|
         content_menu << "
-            <tr>
-              <td>#{item.menu.name}</td>
-              <td>#{item.quantity}</td>
-              <td>#{helpers.number_to_currency(item.menu.price)}</td>
-            </tr>
+          <tr>
+            <td>#{item.menu.name}</td>
+            <td>#{item.quantity}</td>
+            <td>#{helpers.number_to_currency(item.menu.price)}</td>
+          </tr>
         "
       end
+
       content_charge = "
-          
-          <tr>
-            <td>Tax</td>
-            <td></td>
-            <td>#{helpers.number_to_currency(order.total_price * 0.08)}</td>
-          </tr>
-          <tr>
-            <td>Tip</td>
-            <td></td>
-            <td>$5.00</td>
-          </tr>
-          <tr>
-            <td>Delivery</td>
-            <td></td>
-            <td>$6.00</td>
-          </tr>
+        <tr>
+          <td>Tax</td>
+          <td></td>
+          <td>#{helpers.number_to_currency(order.total_price * 0.08)}</td>
+        </tr>
+        <tr>
+          <td>Tip</td>
+          <td></td>
+          <td>$5.00</td>
+        </tr>
+        <tr>
+          <td>Delivery</td>
+          <td></td>
+          <td>$6.00</td>
+        </tr>
       "
 
-        content_total = "
-          <tr>
-            <td>Total</td>
-            <td></td>
-            <td>#{helpers.number_to_currency(order.total_price * 1.08 + 6.00)}</td>
-          </tr>
+      content_total = "
+        <tr>
+          <td>Total</td>
+          <td></td>
+          <td>#{helpers.number_to_currency(order.total_price * 1.08 + 6.00)}</td>
+        </tr>
       "
 
       mandrill = Mandrill::API.new ENV["MANDRILL_APIKEY"]
