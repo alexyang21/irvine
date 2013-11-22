@@ -55,17 +55,13 @@
     </div>
     <div class="row">
       <div class="col-lg-9">
-        <%= label_tag :date, "Desired delivery time" %>
+        <%= label_tag :delivery_time, "Desired delivery time" %>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-5">
-        <%= f.select :date, options_for_select(select_dates), {},
+        <%= f.select :delivery_time, options_for_select(select_delivery_time), {},
           { :class => "form-control" } %>
-      </div>
-      <div class="col-lg-4">
-        <%= f.select :time, options_for_select(select_times), {},
-        class: "form-control" %>
       </div>
     </div>
     <div class="row">

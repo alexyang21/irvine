@@ -8,8 +8,8 @@ class Driver < MailForm::Base
   attribute :car_make,        :validate => true
   attribute :car_model,       :validate => true
   attribute :conviction,      :validate => true
-  attribute :experience,   :validate => true
-  attribute :violations,        :validate => true
+  attribute :experience,      :validate => true
+  attribute :violations,      :validate => true
   attribute :hours,           :validate => true
 
 
