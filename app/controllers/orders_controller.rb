@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
 
     # Get the credit card details submitted by the form
     token = params[:stripeToken]
+    logger.info "Token is #{token.inspect}"
 
     @order = Order.new(order_params)
     @order.add_items_from_cart(@cart)
@@ -114,7 +115,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :email, :phone, :address, :city, :state, :date, :time, :driver_instructions)
+      params.require(:order).permit(:name, :email, :phone, :address, :city, :state, :delivery_time, :driver_instructions)
     end
 
     def check_cart_empty
