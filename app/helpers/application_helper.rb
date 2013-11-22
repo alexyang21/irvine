@@ -12,6 +12,8 @@ module ApplicationHelper
 
   def select_delivery_time
     times = []
+    opening_time = Time.now.change({hour: 17})
+    closing_time = Time.now.change({hour: 21})
     times << Time.now
     times << Time.now.change({hour: 17})
     times << (((closing_time - opening_time)/1.minute)/30).round
