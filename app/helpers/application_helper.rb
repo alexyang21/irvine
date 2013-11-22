@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def select_delivery_time
     logger.info "Current time is #{Time.now}"
-    logger.info "Current time at 5:00pm is #{Time.now.change({hour: 17}}"
+    logger.info "Current time at 5:00pm is #{Time.now.change({hour: 17})}"
     times = []
     current_time = Time.now
     opening_time = Time.now.change({hour: 17})
