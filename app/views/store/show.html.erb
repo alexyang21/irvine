@@ -4,7 +4,7 @@
       <h1><%= @restaurant.name %></h1>
     </div>
 
-    <ul class="nav nav-pills nav-justified">
+    <ul class="nav nav-tabs nav-justified">
       <% categories = @menus.to_a.map { |m| m.category }.uniq %>
 
       <!-- Sort categories by order of entry -->
@@ -18,20 +18,19 @@
           <li>
         <% end %>
 
-        <%= link_to "#{category}", "\##{clean_category(category)}",
-            :'data-toggle' => "pill" %>
+        <%= link_to "#{category}", "\##{clean_category(category)}", :'data-toggle' => "tab" %>
 
         </li>
       <% end %>
     </ul>
 
-    <div class="pill-content">
+    <div class="tab-content">
       <% categories.each_with_index do |category, index| %>
 
         <% if index == 0 %>
-          <div class="pill-pane fade in active" id="<%= clean_category(category) %>">
+          <div class="tab-pane fade in active" id="<%= clean_category(category) %>">
         <% else %>
-          <div class="pill-pane fade" id="<%= clean_category(category) %>">
+          <div class="tab-pane fade" id="<%= clean_category(category) %>">
         <% end %>
 
           <!-- Select and sort menu items by order of entry -->
