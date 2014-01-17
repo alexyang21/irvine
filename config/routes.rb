@@ -21,7 +21,7 @@ FlipOrder::Application.routes.draw do
 
   get '/drivers/apply',     to: 'drivers#new'
   get '/about',             to: 'pages#about'
-  get '/vendors',            to: 'vendors#new'
+  get '/vendors',           to: 'vendors#new'
   get '/drivers',           to: 'pages#drivers'
   get '/contact',           to: 'pages#contact'
   get '/:restaurant_name',  to: 'store#show', as: 'store'
